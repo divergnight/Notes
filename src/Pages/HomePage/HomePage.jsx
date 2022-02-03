@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Row, Col, InputGroup, Button, FormControl, Form } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import Notebooks from '../../Components/Notebooks/Notebooks';
 import './HomePage.css';
@@ -10,7 +10,7 @@ export default function HomePage() {
 
 	return (
 		<div>
-			<AppNavbar search={search} setSearch={setSearch} />
+			<AppNavbar notebooks={notebooks} search={search} setSearch={setSearch} />
 			<main>
 				<Container fluid>
 					<Row>

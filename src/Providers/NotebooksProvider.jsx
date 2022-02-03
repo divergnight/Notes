@@ -26,12 +26,23 @@ export class NotebooksProvider {
 		const id = uuid();
 		notebook.id = id;
 		notebook.created = Date.now();
+		notebook.favorite = false;
 		this.notebooks.push(notebook);
 		this.save();
 	}
 
-	del(index) {
-		this.notebooks.splice(index, 1);
+	edit(id, notebook) {
+		this.load();
+		this.notebooks = this.notebooks.map(a => {
+			return a.id === id ? notebook : a;
+		});
+		this.save();
+	}
+
+	del(id) {
+		this.notebooks.map((a, idx) => {
+			if (a.id === id) this.notebooks.splice(idx, 1);
+		});
 
 		if (this.notebooks.length > 0) {
 			this.save();

@@ -2,11 +2,20 @@ import { Container, Nav, Navbar, InputGroup, Button, FormControl } from 'react-b
 import './AppNavbar.css';
 import { Link } from 'react-router-dom';
 import IconSearch from '../Icons/IconSearch';
+import { useEffect, useState } from 'react';
+import { FavoritesProvider } from '../../Providers/FavoritesProvider';
 
 export default function AppNavbar(props) {
-	const favorites = props?.favorites ? props.favorites : [];
+	const notebooks = props.notebooks;
 	const search = props.search;
 	const setSearch = props.setSearch;
+	const [favorites, setFavorites] = useState([]);
+	const favoritesProvider = new FavoritesProvider();
+
+	useEffect(() => {
+		let datas = favoritesProvider.get();
+		setFavorites(datas);
+	}, [notebooks]);
 
 	return (
 		<>
@@ -24,8 +33,8 @@ export default function AppNavbar(props) {
 								</Nav.Link>
 								{favorites.map((favorite, index) => {
 									return (
-										<Nav.Link key={index} className="Navbar-nav-link" as={Link} to={favorite[1]}>
-											{favorite[0]}
+										<Nav.Link key={index} className="Navbar-nav-link" as={Link} to={'/'}>
+											{favorite.title}
 										</Nav.Link>
 									);
 								})}

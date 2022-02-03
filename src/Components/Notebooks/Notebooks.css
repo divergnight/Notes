@@ -20,3 +20,9 @@
 #Notebooks-Add button {
 	color: var(--main-color) !important;
 }
+
+#Notebooks-DisplayMode {
+	margin-left: 5px;
+	float: left;
+	padding: 5px;
+}

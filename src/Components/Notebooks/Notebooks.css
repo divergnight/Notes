@@ -1,0 +1,22 @@
+#Notebooks {
+	margin-top: 1rem;
+	padding: 5px;
+	text-align: center;
+}
+
+#Notebooks {
+	color: whitesmoke;
+}
+
+#Notebooks-Add {
+	width: 250px;
+	float: right;
+}
+
+#Notebooks-Add input {
+	background-color: var(--main-color) !important;
+}
+
+#Notebooks-Add button {
+	color: var(--main-color) !important;
+}

@@ -71,11 +71,13 @@ export default function NoteActionForm(props) {
 													<InputGroup className="mb-3">
 														<InputGroup.Text>Category</InputGroup.Text>
 														<Form.Select aria-label="Default select example">
-															{categories.map(category => (
-																<option key={category.id} value={category.id}>
-																	{category.name}
-																</option>
-															))}
+															{categories
+																.sort((a, b) => a.name.localeCompare(b.name))
+																.map(category => (
+																	<option key={category.id} value={category.id}>
+																		{category.name}
+																	</option>
+																))}
 														</Form.Select>
 													</InputGroup>
 												</Col>

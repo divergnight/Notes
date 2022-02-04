@@ -5,19 +5,20 @@ import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import NoteActionForm from '../../Components/NoteActionForm/NoteActionForm';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
-import './AddNotePage.css';
+import './EditNotePage.css';
 
-export default function AddNotePage() {
-	const [addForm, setAddForm] = useState({ title: '', content: '' });
+export default function EditNotePage() {
+	const [editForm, setEditForm] = useState({ title: '', content: '' });
 	const navigate = useNavigate();
 
 	const currentProvider = new CurrentProvider();
-	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
+	const notebookID = currentProvider.get().notebook;
+	const notebookProvider = new NotebookProvider(notebookID);
 
-	function add(e) {
+	function edit(e) {
 		e.preventDefault();
 
-		notebookProvider.add(addForm);
+		notebookProvider.edit(notebookID, editForm);
 
 		navigate('./..');
 	}
@@ -28,7 +29,7 @@ export default function AddNotePage() {
 			<main>
 				<Container fluid>
 					<Row>
-						<NoteActionForm action={add} form={addForm} setForm={setAddForm} />
+						<NoteActionForm action={edit} form={editForm} setForm={setEditForm} />
 					</Row>
 				</Container>
 			</main>

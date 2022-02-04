@@ -8,6 +8,7 @@ import HomePage from './Pages/HomePage/HomePage';
 import NotebookPage from './Pages/NotebookPage/NotebookPage';
 import NotePage from './Pages/NotePage/NotePage';
 import AddNotePage from './Pages/AddNotePage/AddNotePage';
+import EditNotePage from './Pages/EditNotePage/EditNotePage';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
 				<Route path="/" element={<HomePage />} />
 				<Route path="/notebook" element={<NotebookPage />} />
 				<Route path="/notebook/add" element={<AddNotePage />} />
+				<Route path="/notebook/edit" element={<EditNotePage />} />
 				<Route path="/note" element={<NotePage />} />
 			</Routes>
 		</Router>

@@ -5,12 +5,16 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
+import NotebookPage from './Pages/NotebookPage/NotebookPage';
+import NotePage from './Pages/NotePage/NotePage';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/notebook" element={<NotebookPage />} />
+				<Route path="/note" element={<NotePage />} />
 			</Routes>
 		</Router>
 	</React.StrictMode>,

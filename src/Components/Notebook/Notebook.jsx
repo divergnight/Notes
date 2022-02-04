@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { DateConverter } from '../../Providers/DateConverter';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
@@ -14,11 +15,14 @@ export default function Notebook(props) {
 	const setNotebooks = props.setNotebooks;
 	const display = props.display;
 
+	const navigate = useNavigate();
+
 	const dateConverter = new DateConverter(notebook.created);
 	const favoritesProvider = new FavoritesProvider();
 	const notebooksProvider = new NotebooksProvider();
 
-	function updateFavorite() {
+	function updateFavorite(e) {
+		e.stopPropagation();
 		if (favoritesProvider.get(notebook, notebook.id).length >= 5 && !notebook.favorite) return;
 		notebook.favorite = !notebook.favorite;
 		notebooksProvider.edit(notebook.id, notebook);
@@ -26,13 +30,20 @@ export default function Notebook(props) {
 		notebook.favorite ? favoritesProvider.add(notebook, notebook.id) : favoritesProvider.del(notebook.id);
 	}
 
-	function del() {
+	function del(e) {
+		e.stopPropagation();
 		setOpen(false);
 		setTimeout(() => {
+			favoritesProvider.del(notebook.id);
 			notebooksProvider.del(notebook.id);
 			let tmp = notebooksProvider.get();
 			setNotebooks(tmp);
 		}, 200);
+	}
+
+	function openNotebook() {
+		localStorage.setItem('currentNotebook', notebook.id);
+		navigate('/notebook');
 	}
 
 	useEffect(() => {
@@ -43,16 +54,23 @@ export default function Notebook(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className={display.mode ? 'Notebook-card-grid' : 'Notebook-card-list'}>
+			<Card className={display.mode ? 'Notebook-card-grid' : 'Notebook-card-list'} onClick={openNotebook}>
 				<Card.Body>
-					<span className="Notebook-favorite" onClick={updateFavorite}>
+					<span className="Notebook-favorite" onClick={e => updateFavorite(e)}>
 						{notebook.favorite ? <IconFavorite /> : <IconUnfavorite />}
 					</span>
-					<span className="Notebook-delete" onClick={del}>
+					<span className="Notebook-delete" onClick={e => del(e)}>
 						<IconDelete />
 					</span>
 					<Card.Title className="Notebook-title">{notebook.title}</Card.Title>
-					<Card.Text className="Notebook-date text-muted">{dateConverter.get()}</Card.Text>
+					<Card.Text
+						className="Notebook-date text-muted"
+						onClick={e => {
+							e.stopPropagation();
+						}}
+					>
+						{dateConverter.get()}
+					</Card.Text>
 				</Card.Body>
 			</Card>
 		</Fade>

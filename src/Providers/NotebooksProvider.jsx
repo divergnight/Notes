@@ -38,8 +38,12 @@ export class NotebooksProvider {
 
 	edit(id, notebook) {
 		this.load();
-		this.notebooks = this.notebooks.map(a => {
-			return a.id === id ? notebook : a;
+		this.notebooks = this.notebooks.map(category => {
+			category.notebooks = category.notebooks.map((a, idx) => {
+				if (a.id === id) return notebook;
+				return a;
+			});
+			return category;
 		});
 		this.save();
 	}

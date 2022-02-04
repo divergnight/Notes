@@ -1,10 +1,10 @@
 import { v4 as uuid } from 'uuid';
-export class MembersProvider {
+export class NotebookProvider {
 	notes;
 	key;
 
 	constructor(notebook_id) {
-		this.key = `notes-${notebook_id}`;
+		this.key = `notebook-${notebook_id}`;
 		this.notes = this.get();
 	}
 
@@ -24,7 +24,9 @@ export class MembersProvider {
 
 	add(note) {
 		const id = uuid();
+
 		note.id = id;
+		note.created = Date.now();
 		this.notes.push(note);
 		this.save();
 	}

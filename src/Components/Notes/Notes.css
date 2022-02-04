@@ -1,0 +1,33 @@
+#Notes {
+	margin-top: 1rem;
+	padding: 5px;
+	text-align: center;
+}
+
+#Notes {
+	color: whitesmoke;
+}
+
+#Notes-Add {
+	width: 250px;
+	float: right;
+}
+
+#Notes-Add input {
+	background-color: var(--main-color) !important;
+}
+
+#Notes-Add button {
+	color: var(--main-color) !important;
+}
+
+#Notes-DisplayMode {
+	margin-left: 5px;
+	float: left;
+	padding: 5px;
+}
+
+#Notes h2 {
+	text-align: left;
+	padding-left: 20px;
+}

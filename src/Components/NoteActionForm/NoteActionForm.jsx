@@ -37,7 +37,7 @@ export default function NoteActionForm(props) {
 			<Form onSubmit={e => action(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
-					<span id="NoteActionForm-Back" as={Link} to="./..">
+					<span id="NoteActionForm-Back" onClick={() => navigate('./..')}>
 						<IconBack />
 					</span>
 					<span id="NoteActionForm-See-Preview" onClick={() => setIsPreview(!isPreview)}>

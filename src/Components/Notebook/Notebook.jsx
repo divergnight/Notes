@@ -19,6 +19,7 @@ export default function Notebook(props) {
 	const notebooksProvider = new NotebooksProvider();
 
 	function updateFavorite() {
+		if (favoritesProvider.get(notebook, notebook.id).length >= 5 && !notebook.favorite) return;
 		notebook.favorite = !notebook.favorite;
 		notebooksProvider.edit(notebook.id, notebook);
 		setNotebooks(o => [...o]);
@@ -29,7 +30,8 @@ export default function Notebook(props) {
 		setOpen(false);
 		setTimeout(() => {
 			notebooksProvider.del(notebook.id);
-			setNotebooks(o => [...o].filter(n => n.id !== notebook.id));
+			let tmp = notebooksProvider.get();
+			setNotebooks(tmp);
 		}, 200);
 	}
 

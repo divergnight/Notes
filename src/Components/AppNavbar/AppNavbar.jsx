@@ -27,20 +27,20 @@ export default function AppNavbar(props) {
 						</Navbar.Brand>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
 						<Navbar.Collapse id="basic-navbar-nav">
-							<Nav className="me-auto">
+							<Nav>
 								<Nav.Link className="Navbar-nav-link" as={Link} to={'/'}>
 									Home
 								</Nav.Link>
 								{favorites.map((favorite, index) => {
 									return (
-										<Nav.Link key={index} className="Navbar-nav-link" as={Link} to={'/'}>
+										<Nav.Link key={index} className="Navbar-nav-link Navbar-nav-favorite" as={Link} to={'/'}>
 											{favorite.title}
 										</Nav.Link>
 									);
 								})}
 							</Nav>
-							<Nav>
-								<InputGroup id="Navbar-nav-search">
+							<span className="Navbar-nav-search">
+								<InputGroup>
 									<FormControl
 										placeholder="Rechercher"
 										value={search}
@@ -52,7 +52,7 @@ export default function AppNavbar(props) {
 										<IconSearch />
 									</Button>
 								</InputGroup>
-							</Nav>
+							</span>
 						</Navbar.Collapse>
 					</Container>
 				</Navbar>

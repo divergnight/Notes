@@ -27,7 +27,12 @@ export class NotebooksProvider {
 		notebook.id = id;
 		notebook.created = Date.now();
 		notebook.favorite = false;
-		this.notebooks.push(notebook);
+		if (!this.notebooks.some(category => category.name === 'any')) this.notebooks.push({ id: '0', name: 'any', notebooks: [notebook] });
+		else
+			this.notebooks = this.notebooks.map(category => {
+				if (category.name === 'any') category.notebooks.push(notebook);
+				return category;
+			});
 		this.save();
 	}
 
@@ -40,8 +45,11 @@ export class NotebooksProvider {
 	}
 
 	del(id) {
-		this.notebooks.map((a, idx) => {
-			if (a.id === id) this.notebooks.splice(idx, 1);
+		this.notebooks = this.notebooks.map(category => {
+			category.notebooks.map((a, idx) => {
+				if (a.id === id) category.notebooks.splice(idx, 1);
+			});
+			return category;
 		});
 
 		if (this.notebooks.length > 0) {

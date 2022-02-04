@@ -14,10 +14,12 @@
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	padding: 8px;
 }
 
 .Notebook-card-list .Notebook-title {
 	text-align: start;
+	padding: 2px;
 	padding-left: 24px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -25,13 +27,6 @@
 }
 
 .Notebook-date {
-	position: absolute;
-	bottom: 7px;
-	left: 10px;
-	font-size: 12px;
-}
-
-.Notebook-card-grid .Notebook-date {
 	position: absolute;
 	bottom: 7px;
 	left: 10px;

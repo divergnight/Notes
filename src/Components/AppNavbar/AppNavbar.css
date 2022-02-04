@@ -11,10 +11,37 @@
 	background-color: var(--main-color) !important;
 }
 
-#Navbar-nav-search {
+.Navbar-nav-link {
+	text-align: center;
+}
+
+.Navbar-nav-favorite {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.Navbar-nav-favorite {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	align-self: center;
+	width: 150px;
+}
+
+.Navbar-nav-search {
 	width: 100%;
 }
 
-.Navbar-nav-link {
-	text-align: center;
+@media screen and (min-width: 992px) {
+	.Navbar-nav-search {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		width: auto;
+	}
+
+	.Navbar-nav-favorite {
+		width: 108px;
+	}
 }

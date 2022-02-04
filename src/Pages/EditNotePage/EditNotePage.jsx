@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
@@ -8,17 +8,24 @@ import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './EditNotePage.css';
 
 export default function EditNotePage() {
-	const [editForm, setEditForm] = useState({ title: '', content: '' });
+	const [editForm, setEditForm] = useState({ id: '', title: '', content: '', created: '' });
 	const navigate = useNavigate();
 
 	const currentProvider = new CurrentProvider();
-	const notebookID = currentProvider.get().notebook;
-	const notebookProvider = new NotebookProvider(notebookID);
+	const currentID = currentProvider.get();
+	const notebookProvider = new NotebookProvider(currentID.notebook);
+
+	useEffect(() => {
+		let notebook;
+		notebookProvider.get().map(note => {
+			if (note.id === currentID.note) setEditForm({ id: note.id, title: note.title, content: note.content, created: note.created });
+		});
+	}, []);
 
 	function edit(e) {
 		e.preventDefault();
 
-		notebookProvider.edit(notebookID, editForm);
+		notebookProvider.edit(currentID.note, editForm);
 
 		navigate('./..');
 	}
@@ -29,7 +36,7 @@ export default function EditNotePage() {
 			<main>
 				<Container fluid>
 					<Row>
-						<NoteActionForm action={edit} form={editForm} setForm={setEditForm} />
+						<NoteActionForm type="edit" action={edit} form={editForm} setForm={setEditForm} />
 					</Row>
 				</Container>
 			</main>

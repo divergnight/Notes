@@ -24,12 +24,12 @@
 	border: solid 1px #ced4da;
 	border-radius: 0.25rem;
 	height: 600px;
+	padding: 8px;
 }
 
 #NoteActionForm-Live-Preview > div {
 	overflow: overlay;
 	width: 100%;
-	padding: 5px;
 }
 
 #NoteActionForm-See-Preview {

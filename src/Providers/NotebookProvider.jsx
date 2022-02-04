@@ -31,9 +31,9 @@ export class NotebookProvider {
 		this.save();
 	}
 
-	edit(index, note) {
+	edit(id, note) {
 		this.load();
-		this.notes[index] = note;
+		this.notes = this.notes.map(a => (a.id === id ? note : a));
 		this.save();
 	}
 

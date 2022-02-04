@@ -28,7 +28,7 @@ export default function AddNotePage() {
 			<main>
 				<Container fluid>
 					<Row>
-						<NoteActionForm action={add} form={addForm} setForm={setAddForm} />
+						<NoteActionForm type="add" action={add} form={addForm} setForm={setAddForm} />
 					</Row>
 				</Container>
 			</main>

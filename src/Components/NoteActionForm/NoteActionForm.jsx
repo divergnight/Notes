@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, Form, InputGroup, FormControl, Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import { CurrentProvider } from '../../Providers/CurrentProvider';
-import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './NoteActionForm.css';
 import { Converter } from 'showdown';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
@@ -13,6 +11,7 @@ import IconHide from '../Icons/IconHide';
 export default function NoteActionForm(props) {
 	const form = props.form;
 	const setForm = props.setForm;
+	const isAdd = props.type === 'add';
 	const [isPreview, setIsPreview] = useState(false);
 	const action = props.action;
 
@@ -37,8 +36,8 @@ export default function NoteActionForm(props) {
 		<Card id="NoteActionForm-card" style={{ width: isPreview ? '70%' : '90%' }}>
 			<Form onSubmit={e => action(e)}>
 				<Card.Header>
-					<Card.Title id="NoteActionForm-title">Add note</Card.Title>
-					<span id="NoteActionForm-Back" onClick={() => navigate('./..')}>
+					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
+					<span id="NoteActionForm-Back" as={Link} to="./..">
 						<IconBack />
 					</span>
 					<span id="NoteActionForm-See-Preview" onClick={() => setIsPreview(!isPreview)}>
@@ -101,7 +100,7 @@ export default function NoteActionForm(props) {
 							<Button id="NoteActionForm-Save" type="submit">
 								Save
 							</Button>
-							<Button variant="secondary" id="NoteActionForm-Cancel" onClick={() => navigate('./..')}>
+							<Button variant="secondary" id="NoteActionForm-Cancel" as={Link} to="./..">
 								Cancel
 							</Button>
 						</Card.Footer>

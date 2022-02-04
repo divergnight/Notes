@@ -5,6 +5,47 @@
 	padding: 0;
 }
 
+#NoteActionForm-card .card-header {
+	height: 56px;
+}
+
+#NoteActionForm-Back {
+	margin-left: 5px;
+	float: right;
+	padding: 5px;
+}
+
+#NoteActionForm-Live-Preview {
+	display: none;
+}
+
+#NoteActionForm-Preview,
+#NoteActionForm-Live-Preview {
+	border: solid 1px #ced4da;
+	border-radius: 0.25rem;
+	height: 600px;
+}
+
+#NoteActionForm-Live-Preview > div {
+	overflow: overlay;
+	width: 100%;
+	padding: 5px;
+}
+
+#NoteActionForm-See-Preview {
+	margin-right: 15px;
+	float: right;
+	padding: 5px;
+}
+
+#NoteActionForm-title {
+	vertical-align: middle;
+	margin: 0;
+	float: left;
+	padding: 5px;
+	font-size: 24px;
+}
+
 #NoteActionForm-TextArea .input-group-text {
 	width: 100%;
 	border-radius: 0.25rem 0.25rem 0 0;
@@ -14,4 +55,15 @@
 	margin: 0;
 	margin-top: -1px;
 	border-radius: 0 0 0.25rem 0.25rem;
+	resize: none;
+}
+
+#NoteActionForm-Form {
+	padding: 0;
+}
+
+@media screen and (min-width: 1400px) {
+	#NoteActionForm-Live-Preview {
+		display: flex;
+	}
 }

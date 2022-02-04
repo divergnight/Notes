@@ -57,7 +57,7 @@ export default function Notes(props) {
 					<span id="Notes-DisplayMode" onClick={changeDisplayMode}>
 						{display.mode ? <IconGridMode /> : <IconListMode />}
 					</span>
-					<span id="Notes-Back" onClick={() => navigate('..')}>
+					<span id="Notes-Back" onClick={() => navigate('./..')}>
 						<IconBack />
 					</span>
 					<Button variant="secondary" onClick={add} id="Notes-Add">

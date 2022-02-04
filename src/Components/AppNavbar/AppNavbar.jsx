@@ -39,20 +39,22 @@ export default function AppNavbar(props) {
 									);
 								})}
 							</Nav>
-							<span className="Navbar-nav-search">
-								<InputGroup>
-									<FormControl
-										placeholder="Rechercher"
-										value={search}
-										onChange={e => {
-											setSearch(e.target.value);
-										}}
-									/>
-									<Button variant="primary">
-										<IconSearch />
-									</Button>
-								</InputGroup>
-							</span>
+							{search !== undefined && (
+								<span className="Navbar-nav-search">
+									<InputGroup>
+										<FormControl
+											placeholder="Rechercher"
+											value={search}
+											onChange={e => {
+												setSearch(e.target.value);
+											}}
+										/>
+										<Button variant="primary">
+											<IconSearch />
+										</Button>
+									</InputGroup>
+								</span>
+							)}
 						</Navbar.Collapse>
 					</Container>
 				</Navbar>

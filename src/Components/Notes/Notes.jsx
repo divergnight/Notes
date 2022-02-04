@@ -6,6 +6,8 @@ import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './Notes.css';
 import IconListMode from '../Icons/IconListMode';
 import IconGridMode from '../Icons/IconGridMode';
+import { Navigate, useNavigate } from 'react-router-dom';
+import IconBack from '../Icons/IconBack';
 
 export default function Notes(props) {
 	const notes = props.notes;
@@ -17,6 +19,8 @@ export default function Notes(props) {
 
 	const notebookProvider = new NotebookProvider(localStorage.getItem('currentNotebook'));
 	const displayProvider = new DisplayProvider();
+
+	const navigate = useNavigate();
 
 	function load() {
 		let datas = notebookProvider.get();
@@ -56,6 +60,9 @@ export default function Notes(props) {
 				<div>
 					<span id="Notes-DisplayMode" onClick={changeDisplayMode}>
 						{display.mode ? <IconGridMode /> : <IconListMode />}
+					</span>
+					<span id="Notes-Back" onClick={() => navigate('..')}>
+						<IconBack />
 					</span>
 					<Form onSubmit={e => add(e)} id="Notes-Add">
 						<InputGroup>

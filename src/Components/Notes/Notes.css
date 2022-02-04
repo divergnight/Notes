@@ -11,6 +11,7 @@
 #Notes-Add {
 	width: 250px;
 	float: right;
+	margin-right: 16px;
 }
 
 #Notes-Add input {
@@ -24,6 +25,12 @@
 #Notes-DisplayMode {
 	margin-left: 5px;
 	float: left;
+	padding: 5px;
+}
+
+#Notes-Back {
+	margin-left: 5px;
+	float: right;
 	padding: 5px;
 }
 

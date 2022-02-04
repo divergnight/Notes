@@ -19,10 +19,11 @@ export default function EditNotePage() {
 	const notebookProvider = new NotebookProvider(currentID.notebook);
 
 	useEffect(() => {
-		let notebook;
-		notebookProvider.get().map(note => {
-			if (note.id === currentID.note)
-				setEditForm({ id: note.id, title: note.title, content: converter.makeMarkdown(note.content ? note.content : ''), created: note.created });
+		notebookProvider.get().map(category => {
+			category.notes.map(note => {
+				if (note.id === currentID.note)
+					setEditForm({ id: note.id, title: note.title, content: converter.makeMarkdown(note.content ? note.content : ''), created: note.created });
+			});
 		});
 	}, []);
 

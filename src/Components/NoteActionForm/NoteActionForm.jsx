@@ -3,11 +3,12 @@ import { Card, Form, InputGroup, FormControl, Container, Row, Col, Button } from
 import { useNavigate, Link } from 'react-router-dom';
 import './NoteActionForm.css';
 import { Converter } from 'showdown';
-import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 import IconBack from '../Icons/IconBack';
 import IconShow from '../Icons/IconShow';
 import IconHide from '../Icons/IconHide';
 import PreviewMarkdown from '../PreviewMarkdown/PreviewMarkdown';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
+import { NotebookProvider } from '../../Providers/NotebookProvider';
 
 export default function NoteActionForm(props) {
 	const form = props.form;
@@ -18,8 +19,9 @@ export default function NoteActionForm(props) {
 
 	const navigate = useNavigate();
 
-	const notebooksProvider = new NotebooksProvider();
-	const categories = notebooksProvider.get();
+	const currentProvider = new CurrentProvider();
+	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
+	const categories = notebookProvider.get();
 
 	const converter = new Converter();
 	const DOMPurify = require('dompurify')(window);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
+import NoteActionForm from '../../Components/NoteActionForm/NoteActionForm';
 import './AddNotePage.css';
 
 export default function AddNotePage() {
@@ -10,7 +11,7 @@ export default function AddNotePage() {
 			<main>
 				<Container fluid>
 					<Row>
-						<Col></Col>
+						<NoteActionForm action={'add'} />
 					</Row>
 				</Container>
 			</main>

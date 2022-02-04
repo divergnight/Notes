@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
 import NotebookPage from './Pages/NotebookPage/NotebookPage';
-import NotePage from './Pages/NotePage/NotePage';
 import AddNotePage from './Pages/AddNotePage/AddNotePage';
 import EditNotePage from './Pages/EditNotePage/EditNotePage';
+import PreviewNotePage from './Pages/PreviewNotePage/PreviewNotePage';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -18,7 +18,7 @@ ReactDOM.render(
 				<Route path="/notebook" element={<NotebookPage />} />
 				<Route path="/notebook/add" element={<AddNotePage />} />
 				<Route path="/notebook/edit" element={<EditNotePage />} />
-				<Route path="/note" element={<NotePage />} />
+				<Route path="/notebook/preview" element={<PreviewNotePage />} />
 			</Routes>
 		</Router>
 	</React.StrictMode>,

@@ -1,0 +1,37 @@
+#PreviewNotePage-card {
+	width: 70%;
+	margin: auto;
+	margin-top: 25px;
+	padding: 0;
+}
+
+#PreviewNotePage-card .card-header {
+	height: 56px;
+}
+
+#PreviewNotePage-Back {
+	margin-left: 5px;
+	float: right;
+	padding: 5px;
+}
+
+#PreviewNotePage-Edit {
+	margin-right: 15px;
+	float: right;
+	padding: 5px;
+}
+
+#PreviewNotePage-Preview {
+	border: solid 1px #ced4da;
+	border-radius: 0.25rem;
+	height: 600px;
+	padding: 8px;
+}
+
+#PreviewNotePage-title {
+	vertical-align: middle;
+	margin: 0;
+	float: left;
+	padding: 5px;
+	font-size: 24px;
+}

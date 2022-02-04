@@ -31,7 +31,7 @@ export default function Notebook(props) {
 
 	function openNote() {
 		currentProvider.set('note', note.id);
-		navigate('/note');
+		navigate('./preview');
 	}
 
 	useEffect(() => {

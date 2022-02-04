@@ -68,7 +68,7 @@ export default function Notes(props) {
 			<Row>
 				<h1>Notes</h1>
 				<hr />
-				{notes
+				{filterNotes
 					.sort((a, b) => a.title.localeCompare(b.title))
 					.map((note, catIdx) => (
 						<Col key={note.id} xs={12} md={display.mode ? 6 : 12} lg={display.mode ? 4 : 12} xl={display.mode ? 3 : 12} xxl={display.mode ? 2 : 12}>

@@ -54,7 +54,7 @@ export default function AppNavbar(props) {
 								<span className="Navbar-nav-search">
 									<InputGroup>
 										<FormControl
-											placeholder="Rechercher"
+											placeholder="Search"
 											value={search}
 											onChange={e => {
 												setSearch(e.target.value);

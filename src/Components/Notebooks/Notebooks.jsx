@@ -30,7 +30,13 @@ export default function Notebooks(props) {
 	}, []);
 
 	useEffect(() => {
-		let tmp = notebooks.map(category => category.notebooks.filter(a => a.title.indexOf(search) != -1));
+		let tmp = notebooks.map(category => {
+			let tmp = { ...category };
+			tmp.notebooks = tmp.notebooks.filter(a => {
+				return a.title.indexOf(search) != -1;
+			});
+			return tmp;
+		});
 		setFilterNotebooks(tmp);
 	}, [notebooks, search]);
 
@@ -69,7 +75,7 @@ export default function Notebooks(props) {
 			<Row>
 				<h1>Notebooks</h1>
 				<hr />
-				{notebooks.map((category, catIdx) => (
+				{filterNotebooks.map((category, catIdx) => (
 					<Container key={category.id}>
 						<Row>
 							{!(category.name === 'any' && catIdx === 0) && (

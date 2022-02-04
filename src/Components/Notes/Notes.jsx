@@ -6,8 +6,9 @@ import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './Notes.css';
 import IconListMode from '../Icons/IconListMode';
 import IconGridMode from '../Icons/IconGridMode';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import IconBack from '../Icons/IconBack';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 
 export default function Notes(props) {
 	const notes = props.notes;
@@ -17,7 +18,8 @@ export default function Notes(props) {
 	const [filterNotes, setFilterNotes] = useState([]);
 	const [display, setDisplay] = useState(false);
 
-	const notebookProvider = new NotebookProvider(localStorage.getItem('currentNotebook'));
+	const currentProvider = new CurrentProvider();
+	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
 	const displayProvider = new DisplayProvider();
 
 	const navigate = useNavigate();
@@ -37,14 +39,8 @@ export default function Notes(props) {
 		setFilterNotes(notes.filter(a => a.title.indexOf(search) != -1));
 	}, [notes, search]);
 
-	function add(e) {
-		e.preventDefault();
-		let input = document.getElementById('Notes-Add-Input');
-		if (input.value.trim().length === 0) return;
-		notebookProvider.add({ title: input.value.trim() });
-		input.value = '';
-		input.focus();
-		load();
+	function add() {
+		navigate('./add');
 	}
 
 	function changeDisplayMode() {
@@ -64,12 +60,9 @@ export default function Notes(props) {
 					<span id="Notes-Back" onClick={() => navigate('..')}>
 						<IconBack />
 					</span>
-					<Form onSubmit={e => add(e)} id="Notes-Add">
-						<InputGroup>
-							<FormControl id="Notes-Add-Input" placeholder="Add a note" maxLength="30" required />
-							<Button type="submit">+</Button>
-						</InputGroup>
-					</Form>
+					<Button variant="secondary" onClick={add} id="Notes-Add">
+						Add a note
+					</Button>
 				</div>
 			</Row>
 			<Row>

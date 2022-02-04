@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
@@ -18,6 +19,7 @@ export default function Notebook(props) {
 	const navigate = useNavigate();
 
 	const dateConverter = new DateConverter(notebook.created);
+	const currentProvider = new CurrentProvider();
 	const favoritesProvider = new FavoritesProvider();
 	const notebooksProvider = new NotebooksProvider();
 
@@ -42,7 +44,7 @@ export default function Notebook(props) {
 	}
 
 	function openNotebook() {
-		localStorage.setItem('currentNotebook', notebook.id);
+		currentProvider.set('notebook', notebook.id);
 		navigate('/notebook');
 	}
 

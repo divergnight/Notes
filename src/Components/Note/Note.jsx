@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
 import IconDelete from '../Icons/IconDelete';
@@ -15,7 +16,8 @@ export default function Notebook(props) {
 	const navigate = useNavigate();
 
 	const dateConverter = new DateConverter(note.created);
-	const notebookProvider = new NotebookProvider(localStorage.getItem('currentNotebook'));
+	const currentProvider = new CurrentProvider();
+	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
 
 	function del(e) {
 		e.stopPropagation();
@@ -28,7 +30,7 @@ export default function Notebook(props) {
 	}
 
 	function openNote() {
-		localStorage.setItem('currentNote', note.id);
+		currentProvider.set('note', note.id);
 		navigate('/note');
 	}
 

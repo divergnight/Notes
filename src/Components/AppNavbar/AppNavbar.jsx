@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import IconSearch from '../Icons/IconSearch';
 import { useEffect, useState } from 'react';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 
 export default function AppNavbar(props) {
 	const notebooks = props?.notebooks;
@@ -12,6 +13,7 @@ export default function AppNavbar(props) {
 	const setNotebookID = props?.setNotebookID;
 	const [favorites, setFavorites] = useState([]);
 	const favoritesProvider = new FavoritesProvider();
+	const currentProvider = new CurrentProvider();
 
 	const navigate = useNavigate();
 
@@ -21,8 +23,8 @@ export default function AppNavbar(props) {
 	}, [notebooks]);
 
 	function setCurrentNotebook(notebook) {
-		localStorage.setItem('currentNotebook', notebook.id);
-		setNotebookID && setNotebookID(notebook.id);
+		currentProvider.set('notebook', notebook.id);
+		if (setNotebookID) setNotebookID(notebook.id);
 		navigate('/notebook');
 	}
 

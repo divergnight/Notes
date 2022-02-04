@@ -30,14 +30,7 @@ export default function Notebooks(props) {
 	}, []);
 
 	useEffect(() => {
-		let tmp = notebooks.map(category => {
-			let tmp = { ...category };
-			tmp.notebooks = tmp.notebooks.filter(a => {
-				return a.title.indexOf(search) != -1;
-			});
-			return tmp;
-		});
-		setFilterNotebooks(tmp);
+		setFilterNotebooks(notebooks.filter(a => a.title.indexOf(search) != -1));
 	}, [notebooks, search]);
 
 	function add(e) {
@@ -75,32 +68,20 @@ export default function Notebooks(props) {
 			<Row>
 				<h1>Notebooks</h1>
 				<hr />
-				{filterNotebooks.map((category, catIdx) => (
-					<Container key={category.id}>
-						<Row>
-							{!(category.name === 'any' && catIdx === 0) && (
-								<>
-									<h2>{category.name[0].toUpperCase() + category.name.substring(1)}</h2>
-									<hr />
-								</>
-							)}
-							{category.notebooks
-								.sort((a, b) => a.title.localeCompare(b.title))
-								.map(notebook => (
-									<Col
-										key={notebook.id}
-										xs={12}
-										md={display.mode ? 6 : 12}
-										lg={display.mode ? 4 : 12}
-										xl={display.mode ? 3 : 12}
-										xxl={display.mode ? 2 : 12}
-									>
-										<Notebook setNotebooks={setNotebooks} notebook={notebook} display={display}></Notebook>
-									</Col>
-								))}
-						</Row>
-					</Container>
-				))}
+				{filterNotebooks
+					.sort((a, b) => a.title.localeCompare(b.title))
+					.map((notebook, catIdx) => (
+						<Col
+							key={notebook.id}
+							xs={12}
+							md={display.mode ? 6 : 12}
+							lg={display.mode ? 4 : 12}
+							xl={display.mode ? 3 : 12}
+							xxl={display.mode ? 2 : 12}
+						>
+							<Notebook setNotebooks={setNotebooks} notebook={notebook} display={display}></Notebook>
+						</Col>
+					))}
 			</Row>
 		</Container>
 	);

@@ -24,21 +24,36 @@ export class NotebookProvider {
 
 	add(note) {
 		const id = uuid();
-
 		note.id = id;
 		note.created = Date.now();
-		this.notes.push(note);
+		if (!this.notes.some(category => category.name === 'any')) this.notes.push({ id: '0', name: 'any', notes: [note] });
+		else
+			this.notes = this.notes.map(category => {
+				if (category.name === 'any') category.notes.push(note);
+				return category;
+			});
 		this.save();
 	}
 
 	edit(id, note) {
 		this.load();
-		this.notes = this.notes.map(a => (a.id === id ? note : a));
+		this.notes = this.notes.map(category => {
+			category.notes = category.notes.map((a, idx) => {
+				if (a.id === id) return note;
+				return a;
+			});
+			return category;
+		});
 		this.save();
 	}
 
-	del(index) {
-		this.notes.splice(index, 1);
+	del(id) {
+		this.notes = this.notes.map(category => {
+			category.notes.map((a, idx) => {
+				if (a.id === id) category.notes.splice(idx, 1);
+			});
+			return category;
+		});
 
 		if (this.notes.length > 0) {
 			this.save();

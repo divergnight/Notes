@@ -24,37 +24,22 @@ export class NotebooksProvider {
 
 	add(notebook) {
 		const id = uuid();
+
 		notebook.id = id;
-		notebook.created = Date.now();
 		notebook.favorite = false;
-		if (!this.notebooks.some(category => category.name === 'any')) this.notebooks.push({ id: '0', name: 'any', notebooks: [notebook] });
-		else
-			this.notebooks = this.notebooks.map(category => {
-				if (category.name === 'any') category.notebooks.push(notebook);
-				return category;
-			});
+		notebook.created = Date.now();
+		this.notebooks.push(notebook);
 		this.save();
 	}
 
 	edit(id, notebook) {
 		this.load();
-		this.notebooks = this.notebooks.map(category => {
-			category.notebooks = category.notebooks.map((a, idx) => {
-				if (a.id === id) return notebook;
-				return a;
-			});
-			return category;
-		});
+		this.notebooks = this.notebooks.map(a => (a.id === id ? notebook : a));
 		this.save();
 	}
 
-	del(id) {
-		this.notebooks = this.notebooks.map(category => {
-			category.notebooks.map((a, idx) => {
-				if (a.id === id) category.notebooks.splice(idx, 1);
-			});
-			return category;
-		});
+	del(index) {
+		this.notebooks.splice(index, 1);
 
 		if (this.notebooks.length > 0) {
 			this.save();

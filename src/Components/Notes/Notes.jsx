@@ -36,7 +36,14 @@ export default function Notes(props) {
 	}, []);
 
 	useEffect(() => {
-		setFilterNotes(notes.filter(a => a.title.indexOf(search) != -1));
+		let tmp = notes.map(category => {
+			let tmp = { ...category };
+			tmp.notes = tmp.notes.filter(a => {
+				return a.title.indexOf(search) != -1;
+			});
+			return tmp;
+		});
+		setFilterNotes(tmp);
 	}, [notes, search]);
 
 	function add() {
@@ -68,13 +75,32 @@ export default function Notes(props) {
 			<Row>
 				<h1>Notes</h1>
 				<hr />
-				{filterNotes
-					.sort((a, b) => a.title.localeCompare(b.title))
-					.map((note, catIdx) => (
-						<Col key={note.id} xs={12} md={display.mode ? 6 : 12} lg={display.mode ? 4 : 12} xl={display.mode ? 3 : 12} xxl={display.mode ? 2 : 12}>
-							<Note setNotes={setNotes} note={note} display={display}></Note>
-						</Col>
-					))}
+				{filterNotes.map((category, catIdx) => (
+					<Container key={category.id}>
+						<Row>
+							{!(category.name === 'any' && catIdx === 0) && (
+								<>
+									<h2>{category.name[0].toUpperCase() + category.name.substring(1)}</h2>
+									<hr />
+								</>
+							)}
+							{category.notes
+								.sort((a, b) => a.title.localeCompare(b.title))
+								.map(note => (
+									<Col
+										key={note.id}
+										xs={12}
+										md={display.mode ? 6 : 12}
+										lg={display.mode ? 4 : 12}
+										xl={display.mode ? 3 : 12}
+										xxl={display.mode ? 2 : 12}
+									>
+										<Note setNotes={setNotes} note={note} display={display}></Note>
+									</Col>
+								))}
+						</Row>
+					</Container>
+				))}
 			</Row>
 		</Container>
 	);

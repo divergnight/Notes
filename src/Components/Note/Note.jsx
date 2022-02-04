@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { Converter } from 'showdown';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
@@ -18,6 +19,8 @@ export default function Notebook(props) {
 	const dateConverter = new DateConverter(note.created);
 	const currentProvider = new CurrentProvider();
 	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
+
+	const converter = new Converter();
 
 	function del(e) {
 		e.stopPropagation();
@@ -48,6 +51,7 @@ export default function Notebook(props) {
 						<IconDelete />
 					</span>
 					<Card.Title className="Note-title">{note.title}</Card.Title>
+					{display.mode && <Card.Text className="Note-content text-muted">{converter.makeMarkdown(note.content ? note.content : '')}</Card.Text>}
 					<Card.Text
 						className="Note-date text-muted"
 						onClick={e => {

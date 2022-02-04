@@ -7,6 +7,7 @@ import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 import IconBack from '../Icons/IconBack';
 import IconShow from '../Icons/IconShow';
 import IconHide from '../Icons/IconHide';
+import PreviewMarkdown from '../PreviewMarkdown/PreviewMarkdown';
 
 export default function NoteActionForm(props) {
 	const form = props.form;
@@ -28,13 +29,14 @@ export default function NoteActionForm(props) {
 		tmp[key] = e.target.value;
 		setForm(tmp);
 	}
-	function clean() {
-		return DOMPurify.sanitize(converter.makeHtml(form.content));
+	function preventXSS(e) {
+		props.form.content = DOMPurify.sanitize(converter.makeHtml(form.content));
+		action(e);
 	}
 
 	return (
 		<Card id="NoteActionForm-card" style={{ width: isPreview ? '70%' : '90%' }}>
-			<Form onSubmit={e => action(e)}>
+			<Form onSubmit={e => preventXSS(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
 					<span id="NoteActionForm-Back" onClick={() => navigate('./..')}>
@@ -90,7 +92,7 @@ export default function NoteActionForm(props) {
 									</Col>
 									<Col xs={12} xxl={6}>
 										<div id="NoteActionForm-Live-Preview">
-											<div dangerouslySetInnerHTML={{ __html: clean() }}></div>
+											<PreviewMarkdown value={form.content} />
 										</div>
 									</Col>
 								</Row>
@@ -108,7 +110,7 @@ export default function NoteActionForm(props) {
 				)}
 				{isPreview && (
 					<div id="NoteActionForm-Preview">
-						<div dangerouslySetInnerHTML={{ __html: clean() }}></div>
+						<PreviewMarkdown value={form.content} />
 					</div>
 				)}
 			</Form>

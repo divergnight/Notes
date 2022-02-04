@@ -67,3 +67,12 @@
 		display: flex;
 	}
 }
+
+#NoteActionForm-Cancel {
+	width: 150px;
+}
+
+#NoteActionForm-Save {
+	float: right;
+	width: 150px;
+}

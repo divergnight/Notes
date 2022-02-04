@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
 import NotebookPage from './Pages/NotebookPage/NotebookPage';
 import NotePage from './Pages/NotePage/NotePage';
+import AddNotePage from './Pages/AddNotePage/AddNotePage';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.render(
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/notebook" element={<NotebookPage />} />
+				<Route path="/notebook/add" element={<AddNotePage />} />
 				<Route path="/note" element={<NotePage />} />
 			</Routes>
 		</Router>

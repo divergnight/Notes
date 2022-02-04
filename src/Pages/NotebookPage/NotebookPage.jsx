@@ -8,16 +8,17 @@ import './NotebookPage.css';
 export default function NotebookPage() {
 	const [search, setSearch] = useState('');
 	const [notes, setNotes] = useState([]);
+	const [notebookID, setNotebookID] = useState(localStorage.getItem('currentNotebook'));
 
-	const notebookProvider = new NotebookProvider(localStorage.getItem('currentNotebook'));
+	const notebookProvider = new NotebookProvider(notebookID);
 
 	useEffect(() => {
 		setNotes(notebookProvider.get());
-	}, []);
+	}, [, notebookID]);
 
 	return (
 		<div>
-			<AppNavbar search={search} setSearch={setSearch} />
+			<AppNavbar search={search} setSearch={setSearch} setNotebookID={setNotebookID} />
 			<main>
 				<Container fluid>
 					<Row>

@@ -48,12 +48,13 @@ export default function Notebook(props) {
 
 	function rename(e) {
 		e.stopPropagation();
+		if (notebook.title.trim().length === 0) return;
 		setWriteable(!writeable);
+		notebooksProvider.edit(notebook.id, notebook);
 	}
 
 	function changeValue(e) {
 		notebook.title = e.target.value;
-		notebooksProvider.edit(notebook.id, notebook);
 		setNotebooks(o => [...o]);
 	}
 

@@ -40,6 +40,20 @@
 	font-size: 12px;
 }
 
+.Notebook-rename {
+	position: absolute;
+	top: 4px;
+	right: 35px;
+}
+
+.Notebook-title-rename {
+	margin-top: 10px;
+	background-color: darkgrey;
+	text-align: center;
+	border-radius: 0.25rem;
+	width: 160px;
+}
+
 .Notebook-favorite {
 	position: absolute;
 	top: 7px;

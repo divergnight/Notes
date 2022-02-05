@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Card, Fade } from 'react-bootstrap';
+import { Card, Fade, FormControl } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
+import IconCheck from '../Icons/IconCheck';
 import IconDelete from '../Icons/IconDelete';
+import IconEditWrite from '../Icons/IconEditWrite';
 import IconFavorite from '../Icons/IconFavorite';
 import IconUnfavorite from '../Icons/IconUnfavorite';
 import './Notebook.css';
 
 export default function Notebook(props) {
+	const [writeable, setWriteable] = useState(false);
 	const [open, setOpen] = useState(false);
 	let notebook = props.notebook;
 	const setNotebooks = props.setNotebooks;
@@ -43,6 +46,17 @@ export default function Notebook(props) {
 		}, 200);
 	}
 
+	function rename(e) {
+		e.stopPropagation();
+		setWriteable(!writeable);
+	}
+
+	function changeValue(e) {
+		notebook.title = e.target.value;
+		notebooksProvider.edit(notebook.id, notebook);
+		setNotebooks(o => [...o]);
+	}
+
 	function openNotebook() {
 		currentProvider.set('notebook', notebook.id);
 		navigate('/notebook');
@@ -61,10 +75,25 @@ export default function Notebook(props) {
 					<span className="Notebook-favorite" onClick={e => updateFavorite(e)}>
 						{notebook.favorite ? <IconFavorite /> : <IconUnfavorite />}
 					</span>
+					<span className="Notebook-rename" onClick={e => rename(e)}>
+						{writeable ? <IconCheck /> : <IconEditWrite />}
+					</span>
 					<span className="Notebook-delete" onClick={e => del(e)}>
 						<IconDelete />
 					</span>
-					<Card.Title className="Notebook-title">{notebook.title}</Card.Title>
+					<Card.Title className="Notebook-title">
+						{writeable ? (
+							<input
+								value={notebook.title}
+								onChange={e => changeValue(e)}
+								onClick={e => e.stopPropagation()}
+								className="Notebook-title-rename"
+								autoFocus
+							></input>
+						) : (
+							notebook.title
+						)}
+					</Card.Title>
 					<Card.Text
 						className="Notebook-date text-muted"
 						onClick={e => {

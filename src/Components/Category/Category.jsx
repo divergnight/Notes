@@ -19,7 +19,10 @@ export default function Category(props) {
 
 	function del(e) {
 		e.stopPropagation();
-		if (notes !== 0) return;
+		if (notes !== 0) {
+			alert();
+			return;
+		}
 		setOpen(false);
 		setTimeout(() => {
 			categoriesProvider.del(category.id);
@@ -31,6 +34,7 @@ export default function Category(props) {
 	function rename(e) {
 		e.stopPropagation();
 		if (category.name.trim().length === 0) return;
+
 		setWriteable(!writeable);
 		categoriesProvider.edit(category.id, category);
 	}
@@ -61,14 +65,16 @@ export default function Category(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className="Category-card-list">
+			<Card className="Category-card">
 				<Card.Body>
 					<span className="Category-rename" onClick={e => rename(e)}>
 						{writeable ? <IconCheck /> : <IconEditWrite />}
 					</span>
-					<span className="Category-delete" onClick={e => del(e)}>
-						<IconDelete />
-					</span>
+					{!notes && (
+						<span className="Category-delete" onClick={e => del(e)}>
+							<IconDelete />
+						</span>
+					)}
 					<Card.Title className="Category-title">
 						{writeable ? (
 							<input
@@ -82,7 +88,12 @@ export default function Category(props) {
 							category.name
 						)}
 					</Card.Title>
-					<Card.Text className="Category-count">{notes}</Card.Text>
+					<Card.Text className="Category-count">Notes : {notes}</Card.Text>
+					{notes != 0 && (
+						<Card.Text className="Categorie-alert-message text-muted">
+							<span>You can only delete empty categories.</span>
+						</Card.Text>
+					)}
 				</Card.Body>
 			</Card>
 		</Fade>

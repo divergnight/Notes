@@ -1,15 +1,17 @@
-.Category-card-list {
+.Category-card {
+	position: relative;
 	background-color: #2b2b2b;
 	margin-bottom: 1rem;
 }
 
-.Category-card-list .Category-title {
+.Category-card .Category-title {
 	text-align: start;
 	padding-left: 24px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	margin-bottom: 0;
+	margin-bottom: -8px;
+	width: 70%;
 }
 
 .Category-delete {
@@ -26,8 +28,25 @@
 }
 
 .Category-title-rename {
-	background-color: darkgrey;
-	text-align: center;
+	background-color: #3b3b3b;
+	color: whitesmoke;
 	border-radius: 0.25rem;
 	width: 160px;
+}
+
+.Category-count {
+	float: right;
+	margin-bottom: 5px;
+}
+
+.Categorie-alert-message {
+	position: absolute;
+	bottom: 6px;
+	left: 12px;
+	font-size: 12px;
+	width: calc(100% - var(--bs-gutter-x) * 0.5 - 5px);
+	text-align: start;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }

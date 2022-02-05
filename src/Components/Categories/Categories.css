@@ -1,34 +1,25 @@
-#Notebooks {
+#Categories {
 	margin-top: 1rem;
 	padding: 5px;
 	text-align: center;
-}
-
-#Notebooks {
 	color: whitesmoke;
 }
 
-#Notebooks-Add {
+#Categories-Add {
 	max-width: 250px;
 	float: right;
 }
 
-#Notebooks-Add input {
+#Categories-Add input {
 	background-color: var(--main-color) !important;
 }
 
-#Notebooks-Add button {
+#Categories-Add button {
 	color: var(--main-color) !important;
 }
 
-#Notebooks-DisplayMode,
-#Notebooks-Settings {
+#Categories-Settings {
 	margin-left: 5px;
 	float: left;
 	padding: 5px;
-}
-
-#Notebooks h2 {
-	text-align: left;
-	padding-left: 20px;
 }

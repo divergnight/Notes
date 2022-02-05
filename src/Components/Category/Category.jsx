@@ -46,21 +46,21 @@ export default function Category(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className="Notebook-card-list">
+			<Card className="Category-card-list">
 				<Card.Body>
-					<span className="Notebook-rename" onClick={e => rename(e)}>
+					<span className="Category-rename" onClick={e => rename(e)}>
 						{writeable ? <IconCheck /> : <IconEditWrite />}
 					</span>
-					<span className="Notebook-delete" onClick={e => del(e)}>
+					<span className="Category-delete" onClick={e => del(e)}>
 						<IconDelete />
 					</span>
-					<Card.Title className="Notebook-title">
+					<Card.Title className="Category-title">
 						{writeable ? (
 							<input
 								value={category.name}
 								onChange={e => changeValue(e)}
 								onClick={e => e.stopPropagation()}
-								className="Notebook-title-rename"
+								className="Category-title-rename"
 								autoFocus
 							></input>
 						) : (

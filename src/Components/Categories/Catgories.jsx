@@ -28,7 +28,7 @@ export default function Categories(props) {
 
 	function add(e) {
 		e.preventDefault();
-		let input = document.getElementById('Notebooks-Add-Input');
+		let input = document.getElementById('Categories-Add-Input');
 		if (input.value.trim().length === 0) return;
 		categoriesProvider.add({ name: input.value.trim() });
 		input.value = '';
@@ -37,12 +37,12 @@ export default function Categories(props) {
 	}
 
 	return (
-		<Container fluid id="Notebooks" className="app-container rounded-3">
+		<Container fluid id="Categories" className="app-container rounded-3">
 			<Row>
 				<div>
-					<Form onSubmit={e => add(e)} id="Notebooks-Add">
+					<Form onSubmit={e => add(e)} id="Categories-Add">
 						<InputGroup>
-							<FormControl id="Notebooks-Add-Input" placeholder="Add a category" maxLength="30" required />
+							<FormControl id="Categories-Add-Input" placeholder="Add a category" maxLength="30" required />
 							<Button type="submit">+</Button>
 						</InputGroup>
 					</Form>

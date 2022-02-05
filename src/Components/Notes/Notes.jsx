@@ -6,9 +6,10 @@ import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './Notes.css';
 import IconListMode from '../Icons/IconListMode';
 import IconGridMode from '../Icons/IconGridMode';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import IconBack from '../Icons/IconBack';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
+import IconSettings from '../Icons/IconSettings';
 
 export default function Notes(props) {
 	const notes = props.notes;
@@ -23,6 +24,7 @@ export default function Notes(props) {
 	const displayProvider = new DisplayProvider();
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	function load() {
 		let datas = notebookProvider.get();
@@ -46,10 +48,6 @@ export default function Notes(props) {
 		setFilterNotes(tmp);
 	}, [notes, search]);
 
-	function add() {
-		navigate('./add');
-	}
-
 	function changeDisplayMode() {
 		let tmp = { ...display };
 		tmp.mode = !tmp.mode;
@@ -57,17 +55,26 @@ export default function Notes(props) {
 		setDisplay(tmp);
 	}
 
+	function redirect(path) {
+		let currentProvider = new CurrentProvider();
+		currentProvider.set('lastpath', location.pathname);
+		navigate(path);
+	}
+
 	return (
 		<Container fluid id="Notes" className="app-container rounded-3">
 			<Row>
 				<div>
+					<span id="Notes-Settings" onClick={() => redirect('/settings')}>
+						<IconSettings />
+					</span>
 					<span id="Notes-DisplayMode" onClick={changeDisplayMode}>
 						{display.mode ? <IconGridMode /> : <IconListMode />}
 					</span>
 					<span id="Notes-Back" onClick={() => navigate('./..')}>
 						<IconBack />
 					</span>
-					<Button variant="secondary" onClick={add} id="Notes-Add">
+					<Button variant="secondary" onClick={() => redirect('./add')} id="Notes-Add">
 						Add a note
 					</Button>
 				</div>

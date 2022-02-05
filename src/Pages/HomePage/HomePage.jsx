@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';

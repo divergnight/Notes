@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
 import NotebookPage from './Pages/NotebookPage/NotebookPage';
 import AddNotePage from './Pages/AddNotePage/AddNotePage';

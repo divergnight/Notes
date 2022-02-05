@@ -9,7 +9,7 @@
 }
 
 #Notebooks-Add {
-	width: 250px;
+	max-width: 250px;
 	float: right;
 }
 
@@ -21,7 +21,8 @@
 	color: var(--main-color) !important;
 }
 
-#Notebooks-DisplayMode {
+#Notebooks-DisplayMode,
+#Notebooks-Settings {
 	margin-left: 5px;
 	float: left;
 	padding: 5px;

@@ -19,7 +19,8 @@
 	background-color: #2b2b2b;
 }
 
-#Notes-DisplayMode {
+#Notes-DisplayMode,
+#Notes-Settings {
 	margin-left: 5px;
 	float: left;
 	padding: 5px;

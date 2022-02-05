@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import IconBack from '../../Components/Icons/IconBack';
 import IconEdit from '../../Components/Icons/IconEdit';
@@ -10,6 +10,7 @@ import './PreviewNotePage.css';
 
 export default function PreviewNotePage() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	var content;
 	var title;
 
@@ -25,6 +26,12 @@ export default function PreviewNotePage() {
 		});
 	});
 
+	function redirect(path) {
+		let currentProvider = new CurrentProvider();
+		currentProvider.set('lastpath', location.pathname);
+		navigate(path);
+	}
+
 	return (
 		<div>
 			<AppNavbar />
@@ -35,7 +42,7 @@ export default function PreviewNotePage() {
 						<span id="PreviewNotePage-Back" onClick={() => navigate('./..')}>
 							<IconBack />
 						</span>
-						<span id="PreviewNotePage-Edit" onClick={() => navigate('./../edit')}>
+						<span id="PreviewNotePage-Edit" onClick={() => redirect('./../edit')}>
 							<IconEdit />
 						</span>
 					</Card.Header>

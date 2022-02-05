@@ -18,8 +18,9 @@ export default function NoteActionForm(props) {
 	const action = props.action;
 
 	const navigate = useNavigate();
-
 	const currentProvider = new CurrentProvider();
+	const origin = currentProvider.get().lastpath;
+
 	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
 	const categories = notebookProvider.get();
 
@@ -41,7 +42,7 @@ export default function NoteActionForm(props) {
 			<Form onSubmit={e => preventXSS(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
-					<span id="NoteActionForm-Back" onClick={() => navigate('./..')}>
+					<span id="NoteActionForm-Back" onClick={() => navigate(origin)}>
 						<IconBack />
 					</span>
 					<span id="NoteActionForm-See-Preview" onClick={() => setIsPreview(!isPreview)}>
@@ -106,7 +107,7 @@ export default function NoteActionForm(props) {
 							<Button id="NoteActionForm-Save" type="submit">
 								Save
 							</Button>
-							<Button variant="secondary" id="NoteActionForm-Cancel" as={Link} to="./..">
+							<Button variant="secondary" id="NoteActionForm-Cancel" onClick={() => navigate(origin)}>
 								Cancel
 							</Button>
 						</Card.Footer>

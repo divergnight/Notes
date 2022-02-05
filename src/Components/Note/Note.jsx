@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Converter } from 'showdown';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
@@ -15,6 +15,7 @@ export default function Notebook(props) {
 	const display = props.display;
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const dateConverter = new DateConverter(note.created);
 	const currentProvider = new CurrentProvider();
@@ -34,6 +35,7 @@ export default function Notebook(props) {
 
 	function openNote() {
 		currentProvider.set('note', note.id);
+		currentProvider.set('lastpath', location.pathname);
 		navigate('./preview');
 	}
 

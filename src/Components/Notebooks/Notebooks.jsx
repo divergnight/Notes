@@ -6,6 +6,9 @@ import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './Notebooks.css';
 import IconListMode from '../Icons/IconListMode';
 import IconGridMode from '../Icons/IconGridMode';
+import IconSettings from '../Icons/IconSettings';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 
 export default function Notebooks(props) {
 	const notebooks = props.notebooks;
@@ -17,6 +20,9 @@ export default function Notebooks(props) {
 
 	const notebooksProvider = new NotebooksProvider();
 	const displayProvider = new DisplayProvider();
+
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	function load() {
 		let datas = notebooksProvider.get();
@@ -50,10 +56,19 @@ export default function Notebooks(props) {
 		setDisplay(tmp);
 	}
 
+	function redirect(path) {
+		let currentProvider = new CurrentProvider();
+		currentProvider.set('lastpath', location.pathname);
+		navigate(path);
+	}
+
 	return (
 		<Container fluid id="Notebooks" className="app-container rounded-3">
 			<Row>
 				<div>
+					<span id="Notebooks-Settings" onClick={() => redirect('/settings')}>
+						<IconSettings />
+					</span>
 					<span id="Notebooks-DisplayMode" onClick={changeDisplayMode}>
 						{display.mode ? <IconGridMode /> : <IconListMode />}
 					</span>

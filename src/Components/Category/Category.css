@@ -5,11 +5,11 @@
 
 .Category-card-list .Category-title {
 	text-align: start;
-	padding: 2px;
 	padding-left: 24px;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	margin-bottom: 0;
 }
 
 .Category-delete {
@@ -26,7 +26,6 @@
 }
 
 .Category-title-rename {
-	margin-top: 10px;
 	background-color: darkgrey;
 	text-align: center;
 	border-radius: 0.25rem;

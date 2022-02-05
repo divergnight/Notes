@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
-import { CurrentProvider } from '../../Providers/CurrentProvider';
-import { FavoritesProvider } from '../../Providers/FavoritesProvider';
+import { NotebookProvider } from '../../Providers/NotebookProvider';
+import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 import IconCheck from '../Icons/IconCheck';
 import IconDelete from '../Icons/IconDelete';
 import IconEditWrite from '../Icons/IconEditWrite';
@@ -10,6 +10,7 @@ import './Category.css';
 
 export default function Category(props) {
 	const [writeable, setWriteable] = useState(false);
+	const [notes, setNotes] = useState(0);
 	const [open, setOpen] = useState(false);
 	let category = props.category;
 	const setCategories = props.setCategories;
@@ -18,6 +19,7 @@ export default function Category(props) {
 
 	function del(e) {
 		e.stopPropagation();
+		if (notes !== 0) return;
 		setOpen(false);
 		setTimeout(() => {
 			categoriesProvider.del(category.id);
@@ -38,7 +40,20 @@ export default function Category(props) {
 		setCategories(o => [...o]);
 	}
 
+	function countNotes() {
+		let count = 0;
+		const notebooksProvider = new NotebooksProvider();
+		notebooksProvider.get().map(notebook => {
+			const notebookProvider = new NotebookProvider(notebook.id);
+			notebookProvider.get().map(a => {
+				if (a.id === category.id) count += a.notes.length;
+			});
+		});
+		setNotes(count);
+	}
+
 	useEffect(() => {
+		countNotes();
 		setTimeout(() => {
 			setOpen(true);
 		}, 200);
@@ -67,6 +82,7 @@ export default function Category(props) {
 							category.name
 						)}
 					</Card.Title>
+					<Card.Text className="Category-count">{notes}</Card.Text>
 				</Card.Body>
 			</Card>
 		</Fade>

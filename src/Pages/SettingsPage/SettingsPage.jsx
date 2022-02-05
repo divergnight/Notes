@@ -14,6 +14,7 @@ export default function SettingsPage() {
 			<main>
 				<Container fluid>
 					<Row>
+						<Col md={4} lg={3} xl={3} xxl={2} id="Settings-Settings"></Col>
 						<Col>
 							<Categories categories={categories} setCategories={setCategories} search={search} />
 						</Col>

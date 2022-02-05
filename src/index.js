@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/HomePage/HomePage';
 import NotebookPage from './Pages/NotebookPage/NotebookPage';
 import AddNotePage from './Pages/AddNotePage/AddNotePage';
 import EditNotePage from './Pages/EditNotePage/EditNotePage';
 import PreviewNotePage from './Pages/PreviewNotePage/PreviewNotePage';
+import SettingsPage from './Pages/SettingsPage/SettingsPage';
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
 				<Route path="/notebook/add" element={<AddNotePage />} />
 				<Route path="/notebook/edit" element={<EditNotePage />} />
 				<Route path="/notebook/preview" element={<PreviewNotePage />} />
+				<Route path="/settings" element={<SettingsPage />} />
 			</Routes>
 		</Router>
 	</React.StrictMode>,

@@ -35,8 +35,10 @@ export class CategoriesProvider {
 		this.save();
 	}
 
-	del(index) {
-		this.categories.splice(index, 1);
+	del(id) {
+		this.categories.map((a, idx) => {
+			if (a.id === id) this.categories.splice(idx, 1);
+		});
 
 		if (this.categories.length > 0) {
 			this.save();

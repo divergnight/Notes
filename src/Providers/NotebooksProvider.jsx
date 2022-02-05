@@ -38,8 +38,10 @@ export class NotebooksProvider {
 		this.save();
 	}
 
-	del(index) {
-		this.notebooks.splice(index, 1);
+	del(id) {
+		this.notebooks.map((a, idx) => {
+			if (a.id === id) this.notebooks.splice(idx, 1);
+		});
 
 		if (this.notebooks.length > 0) {
 			this.save();

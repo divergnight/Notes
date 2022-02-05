@@ -8,7 +8,7 @@ import IconShow from '../Icons/IconShow';
 import IconHide from '../Icons/IconHide';
 import PreviewMarkdown from '../PreviewMarkdown/PreviewMarkdown';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
-import { NotebookProvider } from '../../Providers/NotebookProvider';
+import { CategoriesProvider } from '../../Providers/CategoriesProvider';
 
 export default function NoteActionForm(props) {
 	const form = props.form;
@@ -21,8 +21,8 @@ export default function NoteActionForm(props) {
 	const currentProvider = new CurrentProvider();
 	const origin = currentProvider.get().lastpath;
 
-	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
-	const categories = notebookProvider.get();
+	const categoriesProvider = new CategoriesProvider();
+	const categories = categoriesProvider.get();
 
 	const converter = new Converter();
 	const DOMPurify = require('dompurify')(window);
@@ -71,12 +71,12 @@ export default function NoteActionForm(props) {
 												<Col xs={5}>
 													<InputGroup className="mb-3">
 														<InputGroup.Text>Category</InputGroup.Text>
-														<Form.Select aria-label="Default select example">
+														<Form.Select value={form.category} onChange={e => changeValue('category', e)}>
 															{categories
 																.sort((a, b) => a.name.localeCompare(b.name))
-																.map(category => (
-																	<option key={category.id} value={category.id}>
-																		{category.name}
+																.map(categ => (
+																	<option key={categ.id} value={categ.id}>
+																		{categ.name}
 																	</option>
 																))}
 														</Form.Select>

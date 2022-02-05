@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
-import Categories from '../../Components/Categories/Catgories';
+import Categories from '../../Components/Categories/Categories';
 import './SettingsPage.css';
 
 export default function SettingsPage() {

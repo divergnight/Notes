@@ -14,7 +14,8 @@ export class CategoriesProvider {
 
 	load() {
 		let datas = localStorage.getItem(this.key);
-		this.categories = datas ? JSON.parse(datas) : [];
+		this.categories = datas ? JSON.parse(datas) : [{ name: 'any', id: '0' }];
+		this.save();
 	}
 
 	get() {

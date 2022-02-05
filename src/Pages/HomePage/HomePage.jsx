@@ -14,9 +14,7 @@ export default function HomePage() {
 		let count = 0;
 		notebooks.map(notebook => {
 			const notebookProvider = new NotebookProvider(notebook.id);
-			notebookProvider.get().map(category => {
-				count += category.notes.length;
-			});
+			count += notebookProvider.get().length;
 		});
 		return count;
 	}

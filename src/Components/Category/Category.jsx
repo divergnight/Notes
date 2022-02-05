@@ -45,8 +45,8 @@ export default function Category(props) {
 		const notebooksProvider = new NotebooksProvider();
 		notebooksProvider.get().map(notebook => {
 			const notebookProvider = new NotebookProvider(notebook.id);
-			notebookProvider.get().map(a => {
-				if (a.id === category.id) count += a.notes.length;
+			notebookProvider.get().map(note => {
+				if (note.category === category.id) count += 1;
 			});
 		});
 		setNotes(count);

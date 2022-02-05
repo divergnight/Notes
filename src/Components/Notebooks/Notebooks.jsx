@@ -36,7 +36,7 @@ export default function Notebooks(props) {
 	}, []);
 
 	useEffect(() => {
-		setFilterNotebooks(notebooks.filter(a => a.title.indexOf(search) != -1));
+		setFilterNotebooks(notebooks.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) != -1));
 	}, [notebooks, search]);
 
 	function add(e) {

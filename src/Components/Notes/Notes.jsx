@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import IconBack from '../Icons/IconBack';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import IconSettings from '../Icons/IconSettings';
+import { CategoriesProvider } from '../../Providers/CategoriesProvider';
 
 export default function Notes(props) {
 	const notes = props.notes;
@@ -22,6 +23,9 @@ export default function Notes(props) {
 	const currentProvider = new CurrentProvider();
 	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
 	const displayProvider = new DisplayProvider();
+
+	const categoriesProvider = new CategoriesProvider();
+	const categories = [...categoriesProvider.get()];
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -38,13 +42,7 @@ export default function Notes(props) {
 	}, []);
 
 	useEffect(() => {
-		let tmp = notes.map(category => {
-			let tmp = { ...category };
-			tmp.notes = tmp.notes.filter(a => {
-				return a.title.indexOf(search) != -1;
-			});
-			return tmp;
-		});
+		let tmp = notes.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) != -1);
 		setFilterNotes(tmp);
 	}, [notes, search]);
 
@@ -82,19 +80,22 @@ export default function Notes(props) {
 			<Row>
 				<h1>Notes</h1>
 				<hr />
-				{filterNotes
-					.sort((a, b) => a.name.localeCompare(b.name))
+				{categories
+					.filter(category => filterNotes.some(note => note.category === category.id))
+					.sort((a, b) => a.name.localeCompare(b.name) && a.id === '0')
+
 					.map((category, catIdx) => (
 						<Container key={category.id}>
 							<Row>
-								{!(category.name === 'any' && catIdx === 0) && (
+								{!(category.id === '0' && catIdx === 0) && (
 									<>
 										<h2>{category.name[0].toUpperCase() + category.name.substring(1)}</h2>
 										<hr />
 									</>
 								)}
-								{category.notes
+								{filterNotes
 									.sort((a, b) => a.title.localeCompare(b.title))
+									.filter(a => a.category === category.id)
 									.map(note => (
 										<Col
 											key={note.id}

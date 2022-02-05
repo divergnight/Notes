@@ -9,7 +9,7 @@ import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './EditNotePage.css';
 
 export default function EditNotePage() {
-	const [editForm, setEditForm] = useState({ id: '', title: '', content: '', created: '' });
+	const [editForm, setEditForm] = useState({ id: '', title: '', content: '', created: '', category: '' });
 	const navigate = useNavigate();
 
 	const converter = new Converter();
@@ -19,11 +19,15 @@ export default function EditNotePage() {
 	const notebookProvider = new NotebookProvider(currentID.notebook);
 
 	useEffect(() => {
-		notebookProvider.get().map(category => {
-			category.notes.map(note => {
-				if (note.id === currentID.note)
-					setEditForm({ id: note.id, title: note.title, content: converter.makeMarkdown(note.content ? note.content : ''), created: note.created });
-			});
+		notebookProvider.get().map(note => {
+			if (note.id === currentID.note)
+				setEditForm({
+					id: note.id,
+					title: note.title,
+					content: converter.makeMarkdown(note.content ? note.content : ''),
+					created: note.created,
+					category: note.category,
+				});
 		});
 	}, []);
 

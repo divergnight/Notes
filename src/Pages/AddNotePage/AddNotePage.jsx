@@ -8,7 +8,7 @@ import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './AddNotePage.css';
 
 export default function AddNotePage() {
-	const [addForm, setAddForm] = useState({ title: '', content: '' });
+	const [addForm, setAddForm] = useState({ title: '', content: '', category: '0' });
 	const navigate = useNavigate();
 
 	const currentProvider = new CurrentProvider();

@@ -1,12 +1,26 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import Notebooks from '../../Components/Notebooks/Notebooks';
+import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './HomePage.css';
 
 export default function HomePage() {
 	const [search, setSearch] = useState('');
+	const [notes, setNotes] = useState(0);
 	const [notebooks, setNotebooks] = useState([]);
+
+	function countNotes() {
+		let count = 0;
+		notebooks.map(notebook => {
+			const notebookProvider = new NotebookProvider(notebook.id);
+			notebookProvider.get().map(category => {
+				count += category.notes.length;
+			});
+		});
+		return count;
+	}
 
 	return (
 		<div>
@@ -22,6 +36,7 @@ export default function HomePage() {
 								<h2>Stats</h2>
 								<hr />
 								<p>Number of notebooks : {notebooks.length}</p>
+								<p>Number of notes : {countNotes()}</p>
 							</Container>
 						</Col>
 					</Row>

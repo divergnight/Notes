@@ -22,6 +22,21 @@ export default function AppNavbar(props) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		let root = document.documentElement;
+		switch (display.theme) {
+			case 'light':
+				root.style.setProperty('--main-color', 'black');
+				root.style.setProperty('--bg-color', '#dfdfdf');
+				root.style.setProperty('--high-color', '#ff9623');
+				break;
+			default:
+				root.style.setProperty('--main-color', 'whitesmoke');
+				root.style.setProperty('--bg-color', '#070707');
+				root.style.setProperty('--high-color', '#935615');
+		}
+	});
+
+	useEffect(() => {
 		let datas = favoritesProvider.get();
 		setFavorites(datas);
 	}, [notebooks]);

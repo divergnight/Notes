@@ -1,4 +1,4 @@
-@import url('./Theme/dark.css');
+@import url('./var.css');
 
 html {
 	background: var(--bg-color);
@@ -92,12 +92,13 @@ header[id='Main-theme-dark'] ~ main select {
 }
 
 header[id='Main-theme-dark'] ~ main select:focus {
-	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25);
+	border-color: #3b3b3b;
+	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
 	color: whitesmoke;
 }
 
 header[id='Main-theme-light'] ~ main select:focus {
-	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25);
+	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
 }
 
 /*Custom scrollbar*/

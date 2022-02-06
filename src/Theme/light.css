@@ -1,0 +1,32 @@
+:root {
+	--main-color: black;
+	--bg-color: #dfdfdf;
+	--high-color: #ff9623;
+}
+
+header[id='Main-theme-light'] ~ main .btn-primary:focus,
+header[id='Main-theme-light'] ~ main .form-control:focus {
+	border-color: #acb5bd !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+header[id='Main-theme-light'] ~ main .border-secondary {
+	border-color: #acb5bd !important;
+}
+
+header[id='Main-theme-light'] ~ main .btn-primary:focus,
+header[id='Main-theme-light'] ~ main .form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+.bg-light input[class='form-control']:focus,
+.bg-light textarea:focus,
+.bg-light select:focus {
+	border-color: #acb5bd !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+header[id='Main-theme-light'] ~ main #Settings-Settings select:focus {
+	border-color: #6c757d;
+	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
+}

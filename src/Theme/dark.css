@@ -1,0 +1,81 @@
+:root {
+	--main-color: whitesmoke;
+	--bg-color: #070707;
+	--high-color: #935615;
+}
+
+header[id='Main-theme-dark'] ~ main .btn-primary:focus,
+header[id='Main-theme-dark'] ~ main .form-control:focus {
+	border-color: #6c757d !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+header[id='Main-theme-dark'] ~ main .btn-primary:focus,
+header[id='Main-theme-dark'] ~ main .form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgb(93 65 15 / 25%) !important;
+}
+
+.navbar-dark {
+	border-bottom: solid 1px #2b2b2b;
+}
+
+.bg-dark .card-header {
+	background-color: var(--bs-dark);
+}
+
+.bg-dark div[id$='Preview'],
+.bg-dark [id='StatisticsPanel-text'] {
+	background-color: var(--bs-gray-800);
+}
+
+.bg-dark .input-group-text {
+	color: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
+	background-color: var(--bs-dark);
+	border-color: #6c757d;
+}
+
+.bg-dark input[class='form-control'],
+.bg-dark textarea,
+.bg-dark textarea:focus,
+.bg-dark select {
+	color: whitesmoke;
+	background-color: var(--bs-gray-700);
+	border-color: #6c757d;
+}
+
+.bg-dark input[class='form-control']:focus,
+.bg-dark textarea:focus,
+.bg-dark select:focus {
+	border-color: #6c757d !important;
+	box-shadow: 0 0 0 0.25rem rgb(93 65 15 / 25%) !important;
+}
+
+header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group input {
+	color: whitesmoke;
+	background-color: var(--bs-gray-700);
+	border-color: #6c757d;
+}
+header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group button {
+	color: var(--main-color);
+}
+
+header[id='Main-theme-dark'] ~ main #Settings-Settings select {
+	border-color: #3b3b3b;
+	background-color: var(--bs-dark);
+	color: whitesmoke;
+}
+
+header[id='Main-theme-dark'] ~ main #Settings-Settings select:focus {
+	border-color: #3b3b3b;
+	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
+	color: whitesmoke;
+}
+
+header[id='Main-theme-dark'] ~ main .h5 input {
+	color: whitesmoke;
+	background-color: var(--bs-gray-700);
+}
+
+header[id='Main-theme-dark'] ~ main .h5 input:focus-visible {
+	outline: none;
+}

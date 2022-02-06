@@ -40,7 +40,10 @@ export class NotebooksProvider {
 
 	del(id) {
 		this.notebooks.map((a, idx) => {
-			if (a.id === id) this.notebooks.splice(idx, 1);
+			if (a.id === id) {
+				this.notebooks.splice(idx, 1);
+				localStorage.removeItem('notebook-' + id);
+			}
 		});
 
 		if (this.notebooks.length > 0) {

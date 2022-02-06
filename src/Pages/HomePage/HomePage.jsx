@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import Notebooks from '../../Components/Notebooks/Notebooks';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
 import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './HomePage.css';
+import { CurrentProvider } from '../../Providers/CurrentProvider';
 
 export default function HomePage() {
 	const [search, setSearch] = useState('');
 	const [notes, setNotes] = useState(0);
 	const [notebooks, setNotebooks] = useState([]);
 
+	const currentProvider = new CurrentProvider();
+
 	const displayProvider = new DisplayProvider();
 	const display = displayProvider.get();
+
+	useEffect(() => {
+		currentProvider.del('note');
+		currentProvider.del('notebook');
+	}, []);
 
 	function countNotes() {
 		let count = 0;

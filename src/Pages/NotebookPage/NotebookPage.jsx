@@ -16,6 +16,10 @@ export default function NotebookPage() {
 	const notebookProvider = new NotebookProvider(notebookID);
 
 	useEffect(() => {
+		currentProvider.del('note');
+	}, []);
+
+	useEffect(() => {
 		setNotes(notebookProvider.get());
 	}, [, notebookID]);
 

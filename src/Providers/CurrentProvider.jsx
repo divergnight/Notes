@@ -27,6 +27,11 @@ export class CurrentProvider {
 		this.save();
 	}
 
+	del(key) {
+		delete this.current[key];
+		this.save();
+	}
+
 	clear() {
 		localStorage.removeItem(this.key);
 	}

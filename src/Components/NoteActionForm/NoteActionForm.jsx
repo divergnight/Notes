@@ -9,6 +9,7 @@ import IconHide from '../Icons/IconHide';
 import PreviewMarkdown from '../PreviewMarkdown/PreviewMarkdown';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
+import { DisplayProvider } from '../../Providers/DisplayProvider';
 
 export default function NoteActionForm(props) {
 	const form = props.form;
@@ -16,6 +17,9 @@ export default function NoteActionForm(props) {
 	const isAdd = props.type === 'add';
 	const [isPreview, setIsPreview] = useState(false);
 	const action = props.action;
+
+	const displayProvider = new DisplayProvider();
+	const display = displayProvider.get();
 
 	const navigate = useNavigate();
 	const currentProvider = new CurrentProvider();
@@ -38,7 +42,13 @@ export default function NoteActionForm(props) {
 	}
 
 	return (
-		<Card id="NoteActionForm-card" style={{ width: isPreview ? '70%' : '90%' }}>
+		<Card
+			id="NoteActionForm-card"
+			style={{ width: isPreview ? '70%' : '90%' }}
+			bg={display.theme}
+			text={display.theme === 'dark' ? 'light' : 'dark'}
+			border={'secondary'}
+		>
 			<Form onSubmit={e => preventXSS(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>

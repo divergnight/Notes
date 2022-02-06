@@ -13,10 +13,6 @@
 	float: right;
 }
 
-#Notebooks-Add input {
-	background-color: var(--main-color) !important;
-}
-
 #Notebooks-Add button {
 	color: var(--main-color) !important;
 }

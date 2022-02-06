@@ -8,8 +8,15 @@
 #HomePage-Stats {
 	margin-top: 1rem;
 	padding: 5px;
-	padding-top: 10px !important;
-	background-color: var(--main-color) !important;
-	border: solid 1px var(--high-color);
 	text-align: center;
+}
+
+#HomePage-Stats .card-header {
+	padding: 0px;
+	font-size: 40px;
+}
+
+#HomePage-Stats .card-text {
+	padding: 5px;
+	padding-top: 1rem;
 }

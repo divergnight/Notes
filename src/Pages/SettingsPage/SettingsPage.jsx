@@ -61,7 +61,7 @@ export default function SettingsPage() {
 							<p>Theme :</p>
 
 							<Form>
-								<Form.Select value={display.theme} onChange={e => changeDisplay('theme', e.target.value)}>
+								<Form.Select value={display.theme} onChange={e => changeDisplay('theme', e.target.value)} id="Settings-DisplayTheme">
 									<option value={'dark'}>Dark</option>
 									<option value={'light'}>Light</option>
 								</Form.Select>

@@ -72,7 +72,7 @@ export default function Notes(props) {
 					<span id="Notes-Back" onClick={() => navigate('./..')}>
 						<IconBack />
 					</span>
-					<Button variant="secondary" onClick={() => redirect('./add')} id="Notes-Add">
+					<Button variant="primary" onClick={() => redirect('./add')} id="Notes-Add">
 						Add a note
 					</Button>
 				</div>

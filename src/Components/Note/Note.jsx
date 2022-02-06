@@ -47,7 +47,13 @@ export default function Notebook(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className={display.mode ? 'Note-card-grid' : 'Note-card-list'} onClick={openNote}>
+			<Card
+				className={display.mode ? 'Note-card-grid' : 'Note-card-list'}
+				onClick={openNote}
+				bg={display.theme}
+				text={display.theme === 'dark' ? 'light' : 'dark'}
+				border={display.theme}
+			>
 				<Card.Body>
 					<span className="Note-delete" onClick={e => del(e)}>
 						<IconDelete />

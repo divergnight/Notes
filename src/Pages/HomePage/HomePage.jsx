@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import Notebooks from '../../Components/Notebooks/Notebooks';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
+import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './HomePage.css';
 
 export default function HomePage() {
 	const [search, setSearch] = useState('');
 	const [notes, setNotes] = useState(0);
 	const [notebooks, setNotebooks] = useState([]);
+
+	const displayProvider = new DisplayProvider();
+	const display = displayProvider.get();
 
 	function countNotes() {
 		let count = 0;
@@ -29,12 +33,19 @@ export default function HomePage() {
 							<Notebooks notebooks={notebooks} setNotebooks={setNotebooks} search={search} />
 						</Col>
 						<Col md={4} lg={3} xl={3} xxl={2} className="order-first order-md-last">
-							<Container fluid id="HomePage-Stats" className="app-container rounded-3">
-								<h2>Stats</h2>
-								<hr />
-								<p>Number of notebooks : {notebooks.length}</p>
-								<p>Number of notes : {countNotes()}</p>
-							</Container>
+							<Card
+								id="HomePage-Stats"
+								className="app-container rounded-3"
+								bg={display.theme}
+								text={display.theme === 'dark' ? 'light' : 'dark'}
+								border={'secondary'}
+							>
+								<Card.Header>Stats</Card.Header>
+								<Card.Body id="HomePage-stats-text">
+									<p>Number of notebooks : {notebooks.length}</p>
+									<p>Number of notes : {countNotes()}</p>
+								</Card.Body>
+							</Card>
 						</Col>
 					</Row>
 				</Container>

@@ -71,7 +71,13 @@ export default function Notebook(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className={display.mode ? 'Notebook-card-grid' : 'Notebook-card-list'} onClick={openNotebook}>
+			<Card
+				className={display.mode ? 'Notebook-card-grid' : 'Notebook-card-list'}
+				onClick={openNotebook}
+				bg={display.theme}
+				text={display.theme === 'dark' ? 'light' : 'dark'}
+				border={display.theme}
+			>
 				<Card.Body>
 					<span className="Notebook-favorite" onClick={e => updateFavorite(e)}>
 						{notebook.favorite ? <IconFavorite /> : <IconUnfavorite />}

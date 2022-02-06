@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Fade } from 'react-bootstrap';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
+import { DisplayProvider } from '../../Providers/DisplayProvider';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 import IconCheck from '../Icons/IconCheck';
@@ -16,6 +17,9 @@ export default function Category(props) {
 	const setCategories = props.setCategories;
 
 	const categoriesProvider = new CategoriesProvider();
+
+	const displayProvider = new DisplayProvider();
+	const display = displayProvider.get();
 
 	function del(e) {
 		e.stopPropagation();
@@ -65,7 +69,7 @@ export default function Category(props) {
 
 	return (
 		<Fade in={open}>
-			<Card className="Category-card">
+			<Card className="Category-card" bg={display.theme} text={display.theme === 'dark' ? 'light' : 'dark'} border={display.theme}>
 				<Card.Body>
 					<span className="Category-rename" onClick={e => rename(e)}>
 						{writeable ? <IconCheck /> : <IconEditWrite />}

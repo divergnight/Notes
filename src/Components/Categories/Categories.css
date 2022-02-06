@@ -9,10 +9,6 @@
 	float: right;
 }
 
-#Categories-Add input {
-	background-color: var(--main-color) !important;
-}
-
 #Categories-Add button {
 	color: var(--main-color) !important;
 }

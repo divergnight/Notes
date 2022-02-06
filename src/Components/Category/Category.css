@@ -1,6 +1,5 @@
 .Category-card {
 	position: relative;
-	background-color: #2b2b2b;
 	margin-bottom: 1rem;
 }
 
@@ -28,8 +27,6 @@
 }
 
 .Category-title-rename {
-	background-color: #3b3b3b;
-	color: whitesmoke;
 	border-radius: 0.25rem;
 	width: 160px;
 }

@@ -57,3 +57,10 @@
 	left: 10px;
 	font-size: 12px;
 }
+
+.Notebook-count {
+	position: absolute;
+	bottom: -5px;
+	right: 16px;
+	font-size: 12px;
+}

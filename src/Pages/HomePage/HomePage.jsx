@@ -6,13 +6,16 @@ import { NotebookProvider } from '../../Providers/NotebookProvider';
 import { DisplayProvider } from '../../Providers/DisplayProvider';
 import './HomePage.css';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
+import { CategoriesProvider } from '../../Providers/CategoriesProvider';
 
 export default function HomePage() {
 	const [search, setSearch] = useState('');
-	const [notes, setNotes] = useState(0);
 	const [notebooks, setNotebooks] = useState([]);
 
 	const currentProvider = new CurrentProvider();
+
+	const categoriesProvider = new CategoriesProvider();
+	const categories = categoriesProvider.get();
 
 	const displayProvider = new DisplayProvider();
 	const display = displayProvider.get();
@@ -29,6 +32,34 @@ export default function HomePage() {
 			count += notebookProvider.get().length;
 		});
 		return count;
+	}
+
+	function countNotesCategory(category) {
+		let count = 0;
+		notebooks.map(notebook => {
+			const notebookProvider = new NotebookProvider(notebook.id);
+			notebookProvider.get().map(note => {
+				if (note.category === category.id) count += 1;
+			});
+		});
+		return count;
+	}
+
+	function listNotesCategory() {
+		let nb = 0;
+		return categories
+			.sort((a, b) => a.name.localeCompare(b.name))
+			.map(category => {
+				let count = countNotesCategory(category);
+				if (count === 0) return;
+				nb++;
+				return (
+					<span key={category.id}>
+						{(nb === 1 || category.id === '0') && nb-- && <hr />}
+						<Card.Text>{(category.id === '0' ? 'Uncategorized' : category.name) + ' : ' + count}</Card.Text>
+					</span>
+				);
+			});
 	}
 
 	return (
@@ -50,8 +81,9 @@ export default function HomePage() {
 							>
 								<Card.Header>Stats</Card.Header>
 								<Card.Body id="HomePage-stats-text">
-									<p>Number of notebooks : {notebooks.length}</p>
-									<p>Number of notes : {countNotes()}</p>
+									<Card.Text>Number of notebooks : {notebooks.length}</Card.Text>
+									<Card.Text>All notes : {countNotes()}</Card.Text>
+									{listNotesCategory()}
 								</Card.Body>
 							</Card>
 						</Col>

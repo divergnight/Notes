@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
+import { NotebookProvider } from '../../Providers/NotebookProvider';
 import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 import IconCheck from '../Icons/IconCheck';
 import IconDelete from '../Icons/IconDelete';
@@ -14,6 +15,7 @@ import './Notebook.css';
 
 export default function Notebook(props) {
 	const [writeable, setWriteable] = useState(false);
+	const [notes, setNotes] = useState(0);
 	const [open, setOpen] = useState(false);
 	let notebook = props.notebook;
 	const setNotebooks = props.setNotebooks;
@@ -25,6 +27,7 @@ export default function Notebook(props) {
 	const currentProvider = new CurrentProvider();
 	const favoritesProvider = new FavoritesProvider();
 	const notebooksProvider = new NotebooksProvider();
+	const notebookProvider = new NotebookProvider(notebook.id);
 
 	function updateFavorite(e) {
 		e.stopPropagation();
@@ -63,7 +66,12 @@ export default function Notebook(props) {
 		navigate('/notebook');
 	}
 
+	function countNotes() {
+		setNotes(notebookProvider.get().length);
+	}
+
 	useEffect(() => {
+		countNotes();
 		setTimeout(() => {
 			setOpen(true);
 		}, 200);
@@ -101,6 +109,7 @@ export default function Notebook(props) {
 							notebook.title
 						)}
 					</Card.Title>
+					<Card.Text className="Notebook-count">Notes : {notes}</Card.Text>
 					<Card.Text
 						className="Notebook-date text-muted"
 						onClick={e => {

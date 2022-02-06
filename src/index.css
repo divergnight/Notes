@@ -10,13 +10,20 @@ body {
 }
 
 .btn-primary {
+	color: var(--main-color) !important;
 	background-color: var(--high-color) !important;
 	border-color: var(--high-color) !important;
 }
 
-.btn-primary:focus,
-.form-control:focus {
-	border-color: var(--high-color) !important;
+header[id='Main-theme-dark'] ~ main .btn-primary:focus,
+header[id='Main-theme-dark'] ~ main .form-control:focus {
+	border-color: #6c757d !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+header[id='Main-theme-light'] ~ main .btn-primary:focus,
+header[id='Main-theme-light'] ~ main .form-control:focus {
+	border-color: #acb5bd !important;
 	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
 }
 
@@ -58,7 +65,7 @@ header[id='Main-theme-light'] ~ main .form-control:focus {
 .bg-dark textarea,
 .bg-dark textarea:focus,
 .bg-dark select {
-	color: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
+	color: whitesmoke;
 	background-color: var(--bs-gray-700);
 	border-color: #6c757d;
 }
@@ -78,6 +85,7 @@ header[id='Main-theme-light'] ~ main .form-control:focus {
 }
 
 header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group input {
+	color: whitesmoke;
 	background-color: var(--bs-gray-700);
 	border-color: #6c757d;
 }
@@ -85,20 +93,30 @@ header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group button {
 	color: var(--main-color);
 }
 
-header[id='Main-theme-dark'] ~ main select {
-	background-color: #2b2b2b;
+header[id='Main-theme-dark'] ~ main #Settings-Settings select {
 	border-color: #3b3b3b;
+	background-color: var(--bs-dark);
 	color: whitesmoke;
 }
 
-header[id='Main-theme-dark'] ~ main select:focus {
+header[id='Main-theme-dark'] ~ main #Settings-Settings select:focus {
 	border-color: #3b3b3b;
 	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
 	color: whitesmoke;
 }
 
-header[id='Main-theme-light'] ~ main select:focus {
+header[id='Main-theme-light'] ~ main #Settings-Settings select:focus {
+	border-color: #6c757d;
 	box-shadow: 0 0 0 0.25rem rgba(127, 127, 127, 0.25);
+}
+
+header[id='Main-theme-dark'] ~ main .h5 input {
+	color: whitesmoke;
+	background-color: var(--bs-gray-700);
+}
+
+header[id='Main-theme-dark'] ~ main .h5 input:focus-visible {
+	outline: none;
 }
 
 /*Custom scrollbar*/

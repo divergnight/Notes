@@ -5,6 +5,10 @@
 	padding-top: 10px;
 }
 
+header[id='Main-theme-light'] ~ main #Settings-Settings {
+	border-right: solid 1px #9f9f9f !important;
+}
+
 #Settings-Settings p {
 	color: var(--main-color);
 	text-align: center;

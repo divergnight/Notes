@@ -31,7 +31,7 @@ export default function PreviewNotePage() {
 	}
 
 	return (
-		<div>
+		<>
 			<AppNavbar />
 			<main>
 				<Card id="PreviewNotePage-card">
@@ -49,6 +49,6 @@ export default function PreviewNotePage() {
 					</div>
 				</Card>
 			</main>
-		</div>
+		</>
 	);
 }

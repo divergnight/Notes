@@ -40,7 +40,7 @@ export default function EditNotePage() {
 	}
 
 	return (
-		<div>
+		<>
 			<AppNavbar />
 			<main>
 				<Container fluid>
@@ -49,6 +49,6 @@ export default function EditNotePage() {
 					</Row>
 				</Container>
 			</main>
-		</div>
+		</>
 	);
 }

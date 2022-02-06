@@ -20,7 +20,7 @@ export default function HomePage() {
 	}
 
 	return (
-		<div>
+		<>
 			<AppNavbar notebooks={notebooks} search={search} setSearch={setSearch} />
 			<main>
 				<Container fluid>
@@ -39,6 +39,6 @@ export default function HomePage() {
 					</Row>
 				</Container>
 			</main>
-		</div>
+		</>
 	);
 }

@@ -9,18 +9,20 @@ export default function SettingsPage() {
 	const [categories, setCategories] = useState([]);
 
 	return (
-		<div>
+		<>
 			<AppNavbar search={search} setSearch={setSearch} />
 			<main>
 				<Container fluid>
 					<Row>
-						<Col md={4} lg={3} xl={3} xxl={2} id="Settings-Settings"></Col>
+						<Col md={4} lg={3} xl={3} xxl={2} id="Settings-Settings">
+							Hello xorld
+						</Col>
 						<Col>
 							<Categories categories={categories} setCategories={setCategories} search={search} />
 						</Col>
 					</Row>
 				</Container>
 			</main>
-		</div>
+		</>
 	);
 }

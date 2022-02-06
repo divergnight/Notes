@@ -23,7 +23,7 @@ export default function AddNotePage() {
 	}
 
 	return (
-		<div>
+		<>
 			<AppNavbar />
 			<main>
 				<Container fluid>
@@ -32,6 +32,6 @@ export default function AddNotePage() {
 					</Row>
 				</Container>
 			</main>
-		</div>
+		</>
 	);
 }

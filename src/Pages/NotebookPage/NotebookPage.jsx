@@ -20,7 +20,7 @@ export default function NotebookPage() {
 	}, [, notebookID]);
 
 	return (
-		<div>
+		<>
 			<AppNavbar search={search} setSearch={setSearch} setNotebookID={setNotebookID} />
 			<main>
 				<Container fluid>
@@ -31,6 +31,6 @@ export default function NotebookPage() {
 					</Row>
 				</Container>
 			</main>
-		</div>
+		</>
 	);
 }

@@ -1,5 +1,18 @@
 @import url('../../var.css');
 
+header .navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+main {
+	position: relative;
+	margin-top: 57px;
+}
+
 #Navbar-nav-container {
 	margin-right: 10px;
 	margin-left: 10px;

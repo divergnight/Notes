@@ -51,13 +51,15 @@ export default function Categories(props) {
 			<Row>
 				<h1>Categories</h1>
 				<hr />
-				{filterCategories
-					.sort((a, b) => a.name.localeCompare(b.name))
-					.map(category => (
-						<Col key={category.id} xs={12}>
-							<Category setCategories={setCategories} category={category}></Category>
-						</Col>
-					))}
+				<div id="Categories-result">
+					{filterCategories
+						.sort((a, b) => a.name.localeCompare(b.name))
+						.map(category => (
+							<Col key={category.id} xs={12}>
+								<Category setCategories={setCategories} category={category}></Category>
+							</Col>
+						))}
+				</div>
 			</Row>
 		</Container>
 	);

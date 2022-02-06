@@ -5,7 +5,7 @@
 }
 
 #Notes {
-	color: whitesmoke;
+	color: var(--main-color);
 }
 
 #Notes-Add {

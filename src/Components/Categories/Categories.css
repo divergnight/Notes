@@ -1,7 +1,7 @@
 #Categories {
 	margin-top: 1rem;
 	text-align: center;
-	color: whitesmoke;
+	color: var(--main-color);
 }
 
 #Categories-Add {

@@ -1,5 +1,7 @@
+@import url('./Theme/dark.css');
+
 html {
-	background: #000000;
+	background: var(--bg-color);
 }
 
 body {
@@ -7,18 +9,36 @@ body {
 	overflow: overlay;
 }
 
-main .btn-primary {
-	background-color: #935615 !important;
-	border-color: #935615 !important;
+.btn-primary {
+	background-color: var(--high-color) !important;
+	border-color: var(--high-color) !important;
 }
 
-main .btn-primary:focus,
-main .form-control:focus {
-	border-color: #935615 !important;
-	box-shadow: 0 0 0 0.25rem rgb(93 65 15 / 25%) !important;
+.btn-primary:focus,
+.form-control:focus {
+	border-color: var(--high-color) !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
 }
 
 /*Theme*/
+header[id='Main-theme-light'] ~ main .border-secondary {
+	border-color: #acb5bd !important;
+}
+
+header[id='Main-theme-dark'] ~ main .btn-primary:focus,
+header[id='Main-theme-dark'] ~ main .form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgb(93 65 15 / 25%) !important;
+}
+
+header[id='Main-theme-light'] ~ main .btn-primary:focus,
+header[id='Main-theme-light'] ~ main .form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+.navbar-dark {
+	border-bottom: solid 1px #2b2b2b;
+}
+
 .bg-dark .card-header {
 	background-color: var(--bs-dark);
 }
@@ -50,9 +70,34 @@ main .form-control:focus {
 	box-shadow: 0 0 0 0.25rem rgb(93 65 15 / 25%) !important;
 }
 
-form[id$='-Add'] .input-group input {
-	background-color: var(--bs-dark);
+.bg-light input[class='form-control']:focus,
+.bg-light textarea:focus,
+.bg-light select:focus {
+	border-color: #acb5bd !important;
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25) !important;
+}
+
+header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group input {
+	background-color: var(--bs-gray-700);
 	border-color: #6c757d;
+}
+header[id='Main-theme-dark'] ~ main form[id$='-Add'] .input-group button {
+	color: var(--main-color);
+}
+
+header[id='Main-theme-dark'] ~ main select {
+	background-color: #2b2b2b;
+	border-color: #3b3b3b;
+	color: whitesmoke;
+}
+
+header[id='Main-theme-dark'] ~ main select:focus {
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25);
+	color: whitesmoke;
+}
+
+header[id='Main-theme-light'] ~ main select:focus {
+	box-shadow: 0 0 0 0.25rem rgba(185, 149, 81, 0.25);
 }
 
 /*Custom scrollbar*/

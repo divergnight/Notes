@@ -5,16 +5,12 @@
 }
 
 #Notebooks {
-	color: whitesmoke;
+	color: var(--main-color);
 }
 
 #Notebooks-Add {
 	max-width: 250px;
 	float: right;
-}
-
-#Notebooks-Add button {
-	color: var(--main-color) !important;
 }
 
 #Notebooks-DisplayMode,

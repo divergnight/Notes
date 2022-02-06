@@ -5,6 +5,7 @@ import IconSearch from '../Icons/IconSearch';
 import { useEffect, useState } from 'react';
 import { FavoritesProvider } from '../../Providers/FavoritesProvider';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
+import { DisplayProvider } from '../../Providers/DisplayProvider';
 
 export default function AppNavbar(props) {
 	const notebooks = props?.notebooks;
@@ -14,6 +15,9 @@ export default function AppNavbar(props) {
 	const [favorites, setFavorites] = useState([]);
 	const favoritesProvider = new FavoritesProvider();
 	const currentProvider = new CurrentProvider();
+
+	const displayProvider = new DisplayProvider();
+	const display = displayProvider.get();
 
 	const navigate = useNavigate();
 
@@ -30,8 +34,8 @@ export default function AppNavbar(props) {
 
 	return (
 		<>
-			<header>
-				<Navbar bg="light" expand="lg">
+			<header id={'Main-theme-' + display.theme}>
+				<Navbar bg={display.theme} variant={display.theme} expand="lg">
 					<Container id="Navbar-nav-container">
 						<Navbar.Brand as={Link} to="/">
 							Notes

@@ -1,0 +1,10 @@
+#StatisticsPanel {
+	margin-top: 1rem;
+	padding: 5px;
+	text-align: center;
+}
+
+#StatisticsPanel .card-header {
+	padding: 0px;
+	font-size: 40px;
+}

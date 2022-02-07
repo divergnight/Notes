@@ -83,20 +83,24 @@ export default function Notebooks(props) {
 			<Row>
 				<h1>Notebooks</h1>
 				<hr />
-				{filterNotebooks
-					.sort((a, b) => a.title.localeCompare(b.title))
-					.map((notebook, catIdx) => (
-						<Col
-							key={notebook.id}
-							xs={12}
-							md={display.mode ? 6 : 12}
-							lg={display.mode ? 4 : 12}
-							xl={display.mode ? 3 : 12}
-							xxl={display.mode ? 2 : 12}
-						>
-							<Notebook setNotebooks={setNotebooks} notebook={notebook} display={display}></Notebook>
-						</Col>
-					))}
+				<Container fluid id="Notebooks-Result">
+					<Row>
+						{filterNotebooks
+							.sort((a, b) => a.title.localeCompare(b.title))
+							.map((notebook, catIdx) => (
+								<Col
+									key={notebook.id}
+									xs={12}
+									md={display.mode ? 6 : 12}
+									lg={display.mode ? 4 : 12}
+									xl={display.mode ? 3 : 12}
+									xxl={display.mode ? 2 : 12}
+								>
+									<Notebook setNotebooks={setNotebooks} notebook={notebook} display={display}></Notebook>
+								</Col>
+							))}
+					</Row>
+				</Container>
 			</Row>
 		</Container>
 	);

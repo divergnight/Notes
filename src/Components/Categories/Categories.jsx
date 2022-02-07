@@ -51,7 +51,7 @@ export default function Categories(props) {
 			<Row>
 				<h1>Categories</h1>
 				<hr />
-				<div id="Categories-result">
+				<div id="Categories-Result">
 					{filterCategories
 						.sort((a, b) => a.name.localeCompare(b.name))
 						.map(category => (

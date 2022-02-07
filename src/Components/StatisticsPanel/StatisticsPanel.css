@@ -8,3 +8,8 @@
 	padding: 0px;
 	font-size: 40px;
 }
+
+#StatisticsPanel-Categories {
+	max-height: calc(90px + 24px * 10);
+	overflow: overlay;
+}

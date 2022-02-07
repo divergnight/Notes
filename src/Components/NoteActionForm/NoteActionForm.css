@@ -45,6 +45,10 @@
 	font-size: 24px;
 }
 
+#NoteActionForm-note-title {
+	margin-bottom: 1.5rem;
+}
+
 #NoteActionForm-TextArea .input-group-text {
 	width: 100%;
 	border-radius: 0.25rem 0.25rem 0 0;

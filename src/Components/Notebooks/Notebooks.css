@@ -24,3 +24,10 @@
 	text-align: left;
 	padding-left: 20px;
 }
+
+@media (min-width: 768px) {
+	#Notebooks-Result {
+		height: calc(100vh - 57px - 127px);
+		overflow: overlay;
+	}
+}

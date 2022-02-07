@@ -36,3 +36,8 @@
 	text-align: left;
 	padding-left: 20px;
 }
+
+#Notes-Result {
+	height: calc(100vh - 57px - 127px);
+	overflow: overlay;
+}

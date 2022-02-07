@@ -67,7 +67,7 @@ export default function NoteActionForm(props) {
 									<Col xxl={6}>
 										<Container fluid className="mb-3" id="NoteActionForm-Form">
 											<Row>
-												<Col xs={7}>
+												<Col xs={12} md={7} id="NoteActionForm-note-title">
 													<InputGroup>
 														<InputGroup.Text>Title</InputGroup.Text>
 														<FormControl
@@ -78,7 +78,7 @@ export default function NoteActionForm(props) {
 														/>
 													</InputGroup>
 												</Col>
-												<Col xs={5}>
+												<Col xs={12} md={5}>
 													<InputGroup className="mb-3">
 														<InputGroup.Text>Category</InputGroup.Text>
 														<Form.Select value={form.category} onChange={e => changeValue('category', e)}>

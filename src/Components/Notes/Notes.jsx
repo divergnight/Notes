@@ -85,7 +85,7 @@ export default function Notes(props) {
 					.sort((a, b) => a.name.localeCompare(b.name) && a.id === '0')
 
 					.map((category, catIdx) => (
-						<Container key={category.id}>
+						<Container key={category.id} id="Notes-Result">
 							<Row>
 								{!(category.id === '0' && catIdx === 0) && (
 									<>

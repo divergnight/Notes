@@ -36,14 +36,14 @@ export default function StatisticsPanel(props) {
 	function listNotesCategory() {
 		let nb = 0;
 		return categories
-			.sort((a, b) => a.name.localeCompare(b.name))
+			.sort((a, b) => a.name.localeCompare(b.name) && a.id === '0')
 			.map(category => {
 				let count = countNotesCategory(category);
 				if (count === 0) return;
 				nb++;
 				return (
 					<span key={category.id}>
-						{(nb === 1 || category.id === '0') && nb-- && <hr />}
+						{((category.id === '0' && nb--) || nb === 1) && <hr />}
 						<Card.Text>{(category.id === '0' ? 'Uncategorized' : category.name) + ' : ' + count}</Card.Text>
 					</span>
 				);
@@ -62,7 +62,7 @@ export default function StatisticsPanel(props) {
 			<Card.Body id="StatisticsPanel-text">
 				<Card.Text>Number of notebooks : {notebooks.length}</Card.Text>
 				<Card.Text>All notes : {countNotes()}</Card.Text>
-				{listNotesCategory()}
+				<div id="StatisticsPanel-Categories">{listNotesCategory()}</div>
 			</Card.Body>
 		</Card>
 	);

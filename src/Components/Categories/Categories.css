@@ -18,3 +18,14 @@
 	float: left;
 	padding: 5px;
 }
+
+#Categories-Result {
+	height: calc(100vh - 57px - 119px - 216px);
+	overflow: overlay;
+}
+
+@media (min-width: 768px) {
+	#Categories-Result {
+		height: calc(100vh - 57px - 127px);
+	}
+}

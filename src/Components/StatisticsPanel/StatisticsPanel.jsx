@@ -36,7 +36,7 @@ export default function StatisticsPanel(props) {
 	function listNotesCategory() {
 		let nb = 0;
 		return categories
-			.sort((a, b) => a.name.localeCompare(b.name) && a.id === '0')
+			.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 			.map(category => {
 				let count = countNotesCategory(category);
 				if (count === 0) return;

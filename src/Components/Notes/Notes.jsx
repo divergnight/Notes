@@ -82,7 +82,7 @@ export default function Notes(props) {
 				<hr />
 				{categories
 					.filter(category => filterNotes.some(note => note.category === category.id))
-					.sort((a, b) => a.name.localeCompare(b.name) && a.id === '0')
+					.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 
 					.map((category, catIdx) => (
 						<Container key={category.id} id="Notes-Result">

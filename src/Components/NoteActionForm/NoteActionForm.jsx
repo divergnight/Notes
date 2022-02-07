@@ -83,7 +83,7 @@ export default function NoteActionForm(props) {
 														<InputGroup.Text>Category</InputGroup.Text>
 														<Form.Select value={form.category} onChange={e => changeValue('category', e)}>
 															{categories
-																.sort((a, b) => a.name.localeCompare(b.name))
+																.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 																.map(categ => (
 																	<option key={categ.id} value={categ.id}>
 																		{categ.name}

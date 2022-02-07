@@ -1,12 +1,17 @@
 #Settings-Settings {
-	border-right: solid 2px #2b2b2b;
 	color: var(--main-color);
 	text-align: center;
 	padding-top: 10px;
 }
 
-header[id='Main-theme-light'] ~ main #Settings-Settings {
-	border-right: solid 1px #9f9f9f !important;
+@media (min-width: 768px) {
+	#Settings-Settings {
+		border-right: solid 2px #2b2b2b;
+	}
+
+	header[id='Main-theme-light'] ~ main #Settings-Settings {
+		border-right: solid 1px #9f9f9f !important;
+	}
 }
 
 #Settings-Settings p {

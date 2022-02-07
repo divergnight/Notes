@@ -80,37 +80,39 @@ export default function Notes(props) {
 			<Row>
 				<h1>Notes</h1>
 				<hr />
-				{categories
-					.filter(category => filterNotes.some(note => note.category === category.id))
-					.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
+				<div id="Notes-Result">
+					{categories
+						.filter(category => filterNotes.some(note => note.category === category.id))
+						.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 
-					.map((category, catIdx) => (
-						<Container key={category.id} id="Notes-Result">
-							<Row>
-								{!(category.id === '0' && catIdx === 0) && (
-									<>
-										<h2>{category.name[0].toUpperCase() + category.name.substring(1)}</h2>
-										<hr />
-									</>
-								)}
-								{filterNotes
-									.sort((a, b) => a.title.localeCompare(b.title))
-									.filter(a => a.category === category.id)
-									.map(note => (
-										<Col
-											key={note.id}
-											xs={12}
-											md={display.mode ? 6 : 12}
-											lg={display.mode ? 4 : 12}
-											xl={display.mode ? 3 : 12}
-											xxl={display.mode ? 2 : 12}
-										>
-											<Note setNotes={setNotes} note={note} display={display}></Note>
-										</Col>
-									))}
-							</Row>
-						</Container>
-					))}
+						.map((category, catIdx) => (
+							<Container fluid key={category.id}>
+								<Row>
+									{!(category.id === '0' && catIdx === 0) && (
+										<>
+											<h2>{category.name[0].toUpperCase() + category.name.substring(1)}</h2>
+											<hr />
+										</>
+									)}
+									{filterNotes
+										.sort((a, b) => a.title.localeCompare(b.title))
+										.filter(a => a.category === category.id)
+										.map(note => (
+											<Col
+												key={note.id}
+												xs={12}
+												md={display.mode ? 6 : 12}
+												lg={display.mode ? 4 : 12}
+												xl={display.mode ? 3 : 12}
+												xxl={display.mode ? 2 : 12}
+											>
+												<Note setNotes={setNotes} note={note} display={display}></Note>
+											</Col>
+										))}
+								</Row>
+							</Container>
+						))}
+				</div>
 			</Row>
 		</Container>
 	);

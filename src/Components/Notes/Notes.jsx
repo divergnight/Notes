@@ -11,6 +11,7 @@ import IconBack from '../Icons/IconBack';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import IconSettings from '../Icons/IconSettings';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
+import { NotebooksProvider } from '../../Providers/NotebooksProvider';
 
 export default function Notes(props) {
 	const notes = props.notes;
@@ -23,6 +24,13 @@ export default function Notes(props) {
 	const currentProvider = new CurrentProvider();
 	const notebookProvider = new NotebookProvider(currentProvider.get().notebook);
 	const displayProvider = new DisplayProvider();
+
+	const notebooksProvider = new NotebooksProvider();
+
+	let title;
+	notebooksProvider.get().map(notebook => {
+		if (notebook.id === currentProvider.get().notebook) title = notebook.title;
+	});
 
 	const categoriesProvider = new CategoriesProvider();
 	const categories = [...categoriesProvider.get()];
@@ -78,7 +86,7 @@ export default function Notes(props) {
 				</div>
 			</Row>
 			<Row>
-				<h1>Notes</h1>
+				<h1>{title}</h1>
 				<hr />
 				<div id="Notes-Result">
 					{categories

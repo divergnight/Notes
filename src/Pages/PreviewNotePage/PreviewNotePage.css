@@ -25,6 +25,7 @@
 	border-radius: 0.25rem;
 	height: 600px;
 	padding: 8px;
+	overflow: overlay;
 }
 
 #PreviewNotePage-title {

@@ -40,6 +40,7 @@ export default function Notebook(props) {
 
 	function del(e) {
 		e.stopPropagation();
+		if (notes !== 0) return;
 		setOpen(false);
 		setTimeout(() => {
 			favoritesProvider.del(notebook.id);
@@ -93,9 +94,11 @@ export default function Notebook(props) {
 					<span className="Notebook-rename" onClick={e => rename(e)}>
 						{writeable ? <IconCheck /> : <IconEditWrite />}
 					</span>
-					<span className="Notebook-delete" onClick={e => del(e)}>
-						<IconDelete />
-					</span>
+					{notes === 0 && (
+						<span className="Notebook-delete" onClick={e => del(e)}>
+							<IconDelete />
+						</span>
+					)}
 					<Card.Title className="Notebook-title">
 						{writeable ? (
 							<input

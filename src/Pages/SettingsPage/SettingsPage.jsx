@@ -44,7 +44,7 @@ export default function SettingsPage() {
 							<div id="Settings-Back" onClick={() => navigate(origin)}>
 								<IconBack />
 							</div>
-							<p>Mode d'affichage :</p>
+							<p>Display mode :</p>
 							<div id="Settings-DisplayMode" onClick={() => changeDisplay('mode', !display.mode)}>
 								{display.mode ? (
 									<>

@@ -98,6 +98,13 @@ export default function NoteActionForm(props) {
 												value={form.content}
 												onChange={e => changeValue('content', e)}
 												rows="20"
+												onKeyDown={e => {
+													if (e.key === 'Tab') {
+														e.preventDefault();
+														e.target.setRangeText('	', e.target.selectionStart, e.target.selectionEnd, 'end');
+														changeValue('content', e);
+													}
+												}}
 											/>
 										</InputGroup>
 									</Col>

@@ -1,7 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { DisplayProvider } from '../../Providers/DisplayProvider';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
-import { NotebookProvider } from '../../Providers/NotebookProvider';
 import './StatisticsNotesPanel.css';
 
 export default function StatisticsNotesPanel(props) {
@@ -15,7 +14,7 @@ export default function StatisticsNotesPanel(props) {
 
 	function countNotesCategory(category) {
 		let count = 0;
-		notes.map(note => {
+		notes.forEach(note => {
 			if (note.category === category.id) count += 1;
 		});
 		return count;
@@ -27,7 +26,7 @@ export default function StatisticsNotesPanel(props) {
 			.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 			.map(category => {
 				let count = countNotesCategory(category);
-				if (count === 0) return;
+				if (count === 0) return null;
 				nb++;
 				return (
 					<span key={category.id}>

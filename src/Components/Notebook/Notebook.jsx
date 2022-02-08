@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Fade, FormControl } from 'react-bootstrap';
+import { Card, Fade } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import { DateConverter } from '../../Providers/DateConverter';
@@ -67,12 +67,8 @@ export default function Notebook(props) {
 		navigate('/notebook');
 	}
 
-	function countNotes() {
-		setNotes(notebookProvider.get().length);
-	}
-
 	useEffect(() => {
-		countNotes();
+		setNotes(notebookProvider.get().length);
 		setTimeout(() => {
 			setOpen(true);
 		}, 200);

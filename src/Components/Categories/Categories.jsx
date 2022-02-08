@@ -23,7 +23,7 @@ export default function Categories(props) {
 	}, []);
 
 	useEffect(() => {
-		setFilterCategories(categories.filter(a => a.name.trim().toLowerCase().indexOf(search.trim().toLowerCase()) != -1 && a.id != 0));
+		setFilterCategories(categories.filter(a => a.name.trim().toLowerCase().indexOf(search.trim().toLowerCase()) !== -1 && a.id !== '0'));
 	}, [categories, search]);
 
 	function add(e) {

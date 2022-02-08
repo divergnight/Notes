@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Container, Row, Col, InputGroup, Button, FormControl, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import Note from '../Note/Note';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
 import { DisplayProvider } from '../../Providers/DisplayProvider';
@@ -28,7 +28,7 @@ export default function Notes(props) {
 	const notebooksProvider = new NotebooksProvider();
 
 	let title;
-	notebooksProvider.get().map(notebook => {
+	notebooksProvider.get().forEach(notebook => {
 		if (notebook.id === currentProvider.get().notebook) title = notebook.title;
 	});
 
@@ -50,7 +50,7 @@ export default function Notes(props) {
 	}, []);
 
 	useEffect(() => {
-		let tmp = notes.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) != -1);
+		let tmp = notes.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) !== -1);
 		setFilterNotes(tmp);
 	}, [notes, search]);
 

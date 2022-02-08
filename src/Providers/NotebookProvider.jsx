@@ -40,7 +40,7 @@ export class NotebookProvider {
 	}
 
 	del(id) {
-		this.notes.map((a, idx) => {
+		this.notes.forEach((a, idx) => {
 			if (a.id === id) this.notes.splice(idx, 1);
 		});
 

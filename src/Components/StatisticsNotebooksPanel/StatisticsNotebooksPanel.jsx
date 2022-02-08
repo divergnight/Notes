@@ -15,7 +15,7 @@ export default function StatisticsNotebooksPanel(props) {
 
 	function countNotes() {
 		let count = 0;
-		notebooks.map(notebook => {
+		notebooks.forEach(notebook => {
 			const notebookProvider = new NotebookProvider(notebook.id);
 			count += notebookProvider.get().length;
 		});
@@ -24,9 +24,9 @@ export default function StatisticsNotebooksPanel(props) {
 
 	function countNotesCategory(category) {
 		let count = 0;
-		notebooks.map(notebook => {
+		notebooks.forEach(notebook => {
 			const notebookProvider = new NotebookProvider(notebook.id);
-			notebookProvider.get().map(note => {
+			notebookProvider.get().forEach(note => {
 				if (note.category === category.id) count += 1;
 			});
 		});
@@ -39,7 +39,7 @@ export default function StatisticsNotebooksPanel(props) {
 			.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
 			.map(category => {
 				let count = countNotesCategory(category);
-				if (count === 0) return;
+				if (count === 0) return null;
 				nb++;
 				return (
 					<span key={category.id}>

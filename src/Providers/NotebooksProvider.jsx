@@ -39,7 +39,7 @@ export class NotebooksProvider {
 	}
 
 	del(id) {
-		this.notebooks.map((a, idx) => {
+		this.notebooks.forEach((a, idx) => {
 			if (a.id === id) {
 				this.notebooks.splice(idx, 1);
 				localStorage.removeItem('notebook-' + id);

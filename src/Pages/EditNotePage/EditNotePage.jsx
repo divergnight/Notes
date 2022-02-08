@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Converter } from 'showdown';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import NoteActionForm from '../../Components/NoteActionForm/NoteActionForm';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
@@ -12,14 +11,12 @@ export default function EditNotePage() {
 	const [editForm, setEditForm] = useState({ id: '', title: '', content: '', created: '', category: '' });
 	const navigate = useNavigate();
 
-	const converter = new Converter();
-
 	const currentProvider = new CurrentProvider();
 	const currentID = currentProvider.get();
 	const notebookProvider = new NotebookProvider(currentID.notebook);
 
 	useEffect(() => {
-		notebookProvider.get().map(note => {
+		notebookProvider.get().forEach(note => {
 			if (note.id === currentID.note)
 				setEditForm({
 					id: note.id,

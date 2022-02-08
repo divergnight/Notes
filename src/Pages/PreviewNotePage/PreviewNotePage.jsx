@@ -21,7 +21,7 @@ export default function PreviewNotePage() {
 	const currentProvider = new CurrentProvider();
 	const currentID = currentProvider.get();
 	const notebookProvider = new NotebookProvider(currentID.notebook);
-	notebookProvider.get().map(note => {
+	notebookProvider.get().forEach(note => {
 		if (note.id === currentID.note) {
 			content = note.content;
 			title = note.title;

@@ -36,7 +36,7 @@ export default function Notebooks(props) {
 	}, []);
 
 	useEffect(() => {
-		setFilterNotebooks(notebooks.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) != -1));
+		setFilterNotebooks(notebooks.filter(a => a.title.trim().toLowerCase().indexOf(search.trim().toLowerCase()) !== -1));
 	}, [notebooks, search]);
 
 	function add(e) {
@@ -87,7 +87,7 @@ export default function Notebooks(props) {
 					<Row>
 						{filterNotebooks
 							.sort((a, b) => a.title.localeCompare(b.title))
-							.map((notebook, catIdx) => (
+							.map(notebook => (
 								<Col
 									key={notebook.id}
 									xs={12}

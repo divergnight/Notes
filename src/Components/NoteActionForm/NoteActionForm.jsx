@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Card, Form, InputGroup, FormControl, Container, Row, Col, Button } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './NoteActionForm.css';
-import { Converter } from 'showdown';
 import IconBack from '../Icons/IconBack';
 import IconShow from '../Icons/IconShow';
 import IconHide from '../Icons/IconHide';
@@ -28,9 +27,6 @@ export default function NoteActionForm(props) {
 
 	const categoriesProvider = new CategoriesProvider();
 	const categories = categoriesProvider.get();
-
-	const converter = new Converter();
-	const DOMPurify = require('dompurify')(window);
 
 	function changeCateg(e) {
 		if (e.target.value !== '-1') {

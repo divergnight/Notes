@@ -48,24 +48,23 @@ export default function Category(props) {
 		setCategories(o => [...o]);
 	}
 
-	function countNotes() {
-		let count = 0;
-		const notebooksProvider = new NotebooksProvider();
-		notebooksProvider.get().map(notebook => {
-			const notebookProvider = new NotebookProvider(notebook.id);
-			notebookProvider.get().map(note => {
-				if (note.category === category.id) count += 1;
-			});
-		});
-		setNotes(count);
-	}
-
 	useEffect(() => {
-		countNotes();
+		(() => {
+			let count = 0;
+			const notebooksProvider = new NotebooksProvider();
+			notebooksProvider.get().forEach(notebook => {
+				const notebookProvider = new NotebookProvider(notebook.id);
+				notebookProvider.get().forEach(note => {
+					if (note.category === category.id) count += 1;
+				});
+			});
+			setNotes(count);
+		})();
+
 		setTimeout(() => {
 			setOpen(true);
 		}, 200);
-	}, []);
+	}, [category]);
 
 	return (
 		<Fade in={open}>
@@ -93,7 +92,7 @@ export default function Category(props) {
 						)}
 					</Card.Title>
 					<Card.Text className="Category-count">Notes : {notes}</Card.Text>
-					{notes != 0 && (
+					{notes !== 0 && (
 						<Card.Text className="Categorie-alert-message text-muted">
 							<span>You can only delete empty categories.</span>
 						</Card.Text>

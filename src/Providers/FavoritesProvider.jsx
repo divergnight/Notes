@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 export class FavoritesProvider {
 	favorites;
 	key;
@@ -29,7 +28,7 @@ export class FavoritesProvider {
 	}
 
 	del(id) {
-		this.favorites.map((a, idx) => {
+		this.favorites.forEach((a, idx) => {
 			if (a.id === id) this.favorites.splice(idx, 1);
 		});
 

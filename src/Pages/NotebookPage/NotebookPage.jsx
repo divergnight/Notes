@@ -18,11 +18,12 @@ export default function NotebookPage() {
 
 	useEffect(() => {
 		currentProvider.del('note');
+		setNotes(notebookProvider.get());
 	}, []);
 
 	useEffect(() => {
 		setNotes(notebookProvider.get());
-	}, [, notebookID]);
+	}, [notebookID]);
 
 	return (
 		<>

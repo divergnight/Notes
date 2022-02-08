@@ -38,7 +38,7 @@ export class CategoriesProvider {
 	}
 
 	del(id) {
-		this.categories.map((a, idx) => {
+		this.categories.forEach((a, idx) => {
 			if (a.id === id) this.categories.splice(idx, 1);
 		});
 

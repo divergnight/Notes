@@ -1,15 +1,15 @@
-#StatisticsPanel {
+#StatisticsNotebooksPanel {
 	margin-top: 1rem;
 	padding: 5px;
 	text-align: center;
 }
 
-#StatisticsPanel .card-header {
+#StatisticsNotebooksPanel .card-header {
 	padding: 0px;
 	font-size: 40px;
 }
 
-#StatisticsPanel-Categories {
+#StatisticsNotebooksPanel-Categories {
 	max-height: calc(90px + 24px * 10);
 	overflow: overlay;
 }

@@ -2,10 +2,10 @@ import { Card } from 'react-bootstrap';
 import { DisplayProvider } from '../../Providers/DisplayProvider';
 import { CategoriesProvider } from '../../Providers/CategoriesProvider';
 import { NotebookProvider } from '../../Providers/NotebookProvider';
-import './StatisticsPanel.css';
+import './StatisticsNotesPanel.css';
 
-export default function StatisticsPanel(props) {
-	const notebooks = props.notebooks;
+export default function StatisticsNotesPanel(props) {
+	const notes = props.notes;
 
 	const categoriesProvider = new CategoriesProvider();
 	const categories = categoriesProvider.get();
@@ -13,22 +13,10 @@ export default function StatisticsPanel(props) {
 	const displayProvider = new DisplayProvider();
 	const display = displayProvider.get();
 
-	function countNotes() {
-		let count = 0;
-		notebooks.map(notebook => {
-			const notebookProvider = new NotebookProvider(notebook.id);
-			count += notebookProvider.get().length;
-		});
-		return count;
-	}
-
 	function countNotesCategory(category) {
 		let count = 0;
-		notebooks.map(notebook => {
-			const notebookProvider = new NotebookProvider(notebook.id);
-			notebookProvider.get().map(note => {
-				if (note.category === category.id) count += 1;
-			});
+		notes.map(note => {
+			if (note.category === category.id) count += 1;
 		});
 		return count;
 	}
@@ -52,17 +40,16 @@ export default function StatisticsPanel(props) {
 
 	return (
 		<Card
-			id="StatisticsPanel"
+			id="StatisticsNotesPanel"
 			className="app-container rounded-3"
 			bg={display.theme}
 			text={display.theme === 'dark' ? 'light' : 'dark'}
 			border={'secondary'}
 		>
 			<Card.Header>Stats</Card.Header>
-			<Card.Body id="StatisticsPanel-text">
-				<Card.Text>Number of notebooks : {notebooks.length}</Card.Text>
-				<Card.Text>All notes : {countNotes()}</Card.Text>
-				<div id="StatisticsPanel-Categories">{listNotesCategory()}</div>
+			<Card.Body id="StatisticsNotesPanel-text">
+				<Card.Text>Number of notes : {notes.length}</Card.Text>
+				<div id="StatisticsNotesPanel-Categories">{listNotesCategory()}</div>
 			</Card.Body>
 		</Card>
 	);

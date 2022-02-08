@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
 import Notebooks from '../../Components/Notebooks/Notebooks';
-import StatisticsPanel from '../../Components/StatisticsPanel/StatisticsPanel';
+import StatisticsNotebooksPanel from '../../Components/StatisticsNotebooksPanel/StatisticsNotebooksPanel';
 import { CurrentProvider } from '../../Providers/CurrentProvider';
 import './HomePage.css';
 
@@ -27,7 +27,7 @@ export default function HomePage() {
 							<Notebooks notebooks={notebooks} setNotebooks={setNotebooks} search={search} />
 						</Col>
 						<Col md={4} lg={3} xl={3} xxl={2} className="order-first order-md-last">
-							<StatisticsPanel notebooks={notebooks} />
+							<StatisticsNotebooksPanel notebooks={notebooks} />
 						</Col>
 					</Row>
 				</Container>

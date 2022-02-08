@@ -40,6 +40,11 @@
 #Notes-Result {
 	margin: 0;
 	padding: 0;
-	height: calc(100vh - 57px - 127px);
-	overflow: overlay;
+}
+
+@media (min-width: 768px) {
+	#Notes-Result {
+		height: calc(100vh - 57px - 127px);
+		overflow: overlay;
+	}
 }

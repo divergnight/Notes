@@ -59,7 +59,7 @@ export default function Notebook(props) {
 						<IconDelete />
 					</span>
 					<Card.Title className="Note-title">{note.title}</Card.Title>
-					{display.mode && <Card.Text className="Note-content text-muted">{converter.makeMarkdown(note.content ? note.content : '')}</Card.Text>}
+					{display.mode && <Card.Text className="Note-content text-muted">{converter.makeMarkdown(note.content)}</Card.Text>}
 					<Card.Text
 						className="Note-date text-muted"
 						onClick={e => {

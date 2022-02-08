@@ -24,7 +24,8 @@ header[id='Main-theme-dark'] ~ main .form-control:focus {
 }
 
 .bg-dark div[id$='Preview'],
-.bg-dark [id='StatisticsPanel-text'] {
+.bg-dark [id='StatisticsNotebooksPanel-text'],
+.bg-dark [id='StatisticsNotesPanel-text'] {
 	background-color: var(--bs-gray-800);
 }
 

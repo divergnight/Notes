@@ -16,6 +16,7 @@ export default function NoteActionForm(props) {
 	const setForm = props.setForm;
 	const isAdd = props.type === 'add';
 	const [isPreview, setIsPreview] = useState(false);
+	const [isNewCateg, setIsNewCateg] = useState(false);
 	const action = props.action;
 
 	const displayProvider = new DisplayProvider();
@@ -31,10 +32,30 @@ export default function NoteActionForm(props) {
 	const converter = new Converter();
 	const DOMPurify = require('dompurify')(window);
 
+	function changeCateg(e) {
+		if (e.target.value !== '-1') {
+			setIsNewCateg(false);
+			changeValue('category', e);
+		} else {
+			setIsNewCateg(form.category);
+			e.target.value = '';
+			changeValue('category', e);
+		}
+	}
+
 	function changeValue(key, e) {
 		let tmp = { ...form };
 		tmp[key] = e.target.value;
 		setForm(tmp);
+	}
+
+	function ifAddNewCateg(e) {
+		e.preventDefault();
+		if (isNewCateg) {
+			let category = categoriesProvider.add({ name: form.category });
+			form.category = category.id;
+		}
+		action(e);
 	}
 
 	return (
@@ -45,7 +66,7 @@ export default function NoteActionForm(props) {
 			text={display.theme === 'dark' ? 'light' : 'dark'}
 			border={'secondary'}
 		>
-			<Form onSubmit={e => action(e)}>
+			<Form onSubmit={e => ifAddNewCateg(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
 					<span id="NoteActionForm-Back" onClick={() => navigate(origin)}>
@@ -76,16 +97,35 @@ export default function NoteActionForm(props) {
 												</Col>
 												<Col xs={12} md={5}>
 													<InputGroup className="mb-3">
-														<InputGroup.Text>Category</InputGroup.Text>
-														<Form.Select value={form.category} onChange={e => changeValue('category', e)}>
-															{categories
-																.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
-																.map(categ => (
-																	<option key={categ.id} value={categ.id}>
-																		{categ.name}
-																	</option>
-																))}
-														</Form.Select>
+														<InputGroup.Text>{isNewCateg ? 'New ' : ''}Category</InputGroup.Text>
+														{!isNewCateg && (
+															<Form.Select value={form.category} onChange={e => changeCateg(e)}>
+																{categories
+																	.sort((a, b) => b.id === '0' || a.name.localeCompare(b.name))
+																	.map(categ => (
+																		<option key={categ.id} value={categ.id}>
+																			{categ.name}
+																		</option>
+																	))}
+																<option value="-1">Create new category</option>
+															</Form.Select>
+														)}
+														{isNewCateg && (
+															<FormControl
+																placeholder="Exit : [esc]"
+																value={form.category}
+																onKeyDown={e => {
+																	if (e.key === 'Escape') {
+																		e.target.value = isNewCateg;
+																		setIsNewCateg(false);
+																		changeValue('category', e);
+																	}
+																}}
+																onChange={e => changeValue('category', e)}
+																autoFocus
+																required
+															/>
+														)}
 													</InputGroup>
 												</Col>
 											</Row>

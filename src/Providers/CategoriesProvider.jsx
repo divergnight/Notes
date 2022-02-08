@@ -28,6 +28,7 @@ export class CategoriesProvider {
 		category.id = id;
 		this.categories.push(category);
 		this.save();
+		return category;
 	}
 
 	edit(id, category) {

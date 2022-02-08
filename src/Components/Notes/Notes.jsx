@@ -46,6 +46,7 @@ export default function Notes(props) {
 	}
 
 	useEffect(() => {
+		if (currentProvider.get().notebook === undefined) navigate('./..');
 		load();
 	}, []);
 

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -21,6 +22,10 @@ export default function AddNotePage() {
 
 		navigate('./..');
 	}
+
+	useEffect(() => {
+		if (currentProvider.get().notebook === undefined) navigate('./..');
+	}, []);
 
 	return (
 		<>

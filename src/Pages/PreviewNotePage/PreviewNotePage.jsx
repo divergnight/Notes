@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, Container, Row } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AppNavbar from '../../Components/AppNavbar/AppNavbar';
@@ -33,6 +34,10 @@ export default function PreviewNotePage() {
 		currentProvider.set('lastpath', location.pathname);
 		navigate(path);
 	}
+
+	useEffect(() => {
+		if (currentProvider.get().note === undefined) navigate('./..');
+	}, []);
 
 	return (
 		<>

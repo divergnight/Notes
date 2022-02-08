@@ -16,6 +16,7 @@ export default function EditNotePage() {
 	const notebookProvider = new NotebookProvider(currentID.notebook);
 
 	useEffect(() => {
+		if (currentProvider.get().note === undefined) navigate('./..');
 		notebookProvider.get().forEach(note => {
 			if (note.id === currentID.note)
 				setEditForm({

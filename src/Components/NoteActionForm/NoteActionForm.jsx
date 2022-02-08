@@ -36,10 +36,6 @@ export default function NoteActionForm(props) {
 		tmp[key] = e.target.value;
 		setForm(tmp);
 	}
-	function preventXSS(e) {
-		props.form.content = DOMPurify.sanitize(converter.makeHtml(form.content));
-		action(e);
-	}
 
 	return (
 		<Card
@@ -49,7 +45,7 @@ export default function NoteActionForm(props) {
 			text={display.theme === 'dark' ? 'light' : 'dark'}
 			border={'secondary'}
 		>
-			<Form onSubmit={e => preventXSS(e)}>
+			<Form onSubmit={e => action(e)}>
 				<Card.Header>
 					<Card.Title id="NoteActionForm-title">{isAdd ? 'Add' : 'Edit'} note</Card.Title>
 					<span id="NoteActionForm-Back" onClick={() => navigate(origin)}>

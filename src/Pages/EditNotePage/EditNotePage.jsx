@@ -24,7 +24,7 @@ export default function EditNotePage() {
 				setEditForm({
 					id: note.id,
 					title: note.title,
-					content: converter.makeMarkdown(note.content ? note.content : ''),
+					content: note.content,
 					created: note.created,
 					category: note.category,
 				});

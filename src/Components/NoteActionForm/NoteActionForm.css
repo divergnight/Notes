@@ -24,6 +24,7 @@
 	border-radius: 0.25rem;
 	height: 608px;
 	padding: 8px;
+	overflow: overlay;
 }
 
 #NoteActionForm-Live-Preview > div {

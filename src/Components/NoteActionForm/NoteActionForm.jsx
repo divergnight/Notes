@@ -134,6 +134,7 @@ export default function NoteActionForm(props) {
 												value={form.content}
 												onChange={e => changeValue('content', e)}
 												rows="20"
+												autoFocus
 												onKeyDown={e => {
 													if (e.key === 'Tab') {
 														e.preventDefault();
